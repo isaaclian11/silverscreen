@@ -1,5 +1,6 @@
 package com.example.isaacsanga.demo1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 int num2 = Integer.parseInt(secondNumEditText.getText().toString());
                 int sum = num1 + num2;
                 result.setText(sum + "");
+            }
+        });
+        Button nextPageBtn = findViewById(R.id.nextPageBtn);
+        nextPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+
             }
         });
     }
