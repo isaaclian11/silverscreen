@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Button;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -20,10 +23,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Name = (EditText)findViewByID(R.id.etName);
-        Password = (EditText)findViewByID(R.id.etPassword);
-        Info = (TextView)findViewById(R.id.tvinfo);
-        Login = (Button)findViewByID(R.id.LoginButton);
+        Name = (EditText) findViewByID(R.id.etName);
+        Password = (EditText) findViewByID(R.id.etPassword);
+        Info = (TextView) findViewById(R.id.tvinfo);
+        Login = (Button) findViewByID(R.id.LoginButton);
 
         Info.setText("No of attempts remaining: 5");
 
