@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        b1.setOnClickListener(new View.onClickListener(){
+           @Override
+            public void OnClick(View v){
+
+            }
+        });
 
     }
 }
