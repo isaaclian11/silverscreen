@@ -47,6 +47,17 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         });
+        llamaImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String llamaURL = "https://en.wikipedia.org/wiki/Llama";
+                Uri url = Uri.parse(llamaURL);
+                Intent wiki = new Intent(Intent.ACTION_VIEW, url);
+                if(wiki.resolveActivity(getPackageManager())!=null){
+                    startActivity(wiki);
+                }
+            }
+        });
     }
 
 }
