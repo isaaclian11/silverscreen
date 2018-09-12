@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Experiment</string>
+    <string name="edit_message">*DAB NOISE*</string>
+    <string name="button_send">SEND IT</string>
+</resources>
