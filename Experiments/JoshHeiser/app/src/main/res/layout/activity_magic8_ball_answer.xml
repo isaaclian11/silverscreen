@@ -7,7 +7,7 @@
     tools:context=".Magic8BallAnswer">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/userQuestion"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/SubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -36,5 +36,17 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        tools:text="Enter your question for the magic eight ball into the prompt below" />
+        tools:text="Enter your question for the magic eight ball into the prompt below and press submit" />
+
+    <EditText
+        android:id="@+id/MagicResponse"
+        android:layout_width="350dp"
+        android:layout_height="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="63dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="I'm thinking about your question right now....."
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse" />
 </RelativeLayout>
