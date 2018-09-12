@@ -36,6 +36,7 @@
         android:layout_marginTop="16dp"
         android:text="TextView"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:visibility="visible"
         tools:text="Enter your question for the magic eight ball into the prompt below and press submit" />
 
     <EditText
