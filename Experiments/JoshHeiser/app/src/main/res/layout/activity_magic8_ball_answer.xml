@@ -14,8 +14,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="219dp"
         android:ems="10"
+        android:hint="Question (Will I win my game tomorrow?)"
         android:inputType="textPersonName"
-        android:text="Question (Will I win my game tomorrow?)"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse" />
 
     <Button

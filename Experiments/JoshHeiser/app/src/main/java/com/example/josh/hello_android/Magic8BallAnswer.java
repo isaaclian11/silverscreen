@@ -2,6 +2,7 @@ package com.example.josh.hello_android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,12 @@ public class Magic8BallAnswer extends AppCompatActivity {
         //What the program will say before it comes up with its answer.
         thinking = "Hmmmm let me think about this";
 
+        //back button so that the user can go back to the main menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
         //This defines the button the user presses when they want their question to be answered
         submitButton = (Button) findViewById(R.id.SubmitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +54,16 @@ public class Magic8BallAnswer extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     private void getAnswer(String x){
         //checks to see if the users actually put any text in the Question text box
         if (x.length() == 0) {
