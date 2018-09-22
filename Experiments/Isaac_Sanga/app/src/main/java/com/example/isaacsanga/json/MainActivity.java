@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView result = findViewById(R.id.resultView);
+    private TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button button = findViewById(R.id.getBtn);
         final RequestQueue queue = Volley.newRequestQueue(this);
+        result = findViewById(R.id.resultView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 JsonObjectRequest quoteRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String toPrint = response.toString();
+                        String toPrint = null;
+                        try {
+                            toPrint = response.getString("Host");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         result.setText(toPrint);
-
                     }
                 }, new Response.ErrorListener() {
                     @Override
