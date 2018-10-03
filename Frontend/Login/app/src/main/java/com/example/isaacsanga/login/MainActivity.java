@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(){
-        String url = "";
+        String url = "localhost:8888/usercontrol.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
