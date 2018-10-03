@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
         getEmail = (EditText) findViewById(R.id.getEmail);
         getPassword = (EditText) findViewById(R.id.getPassword);
         login = (Button) findViewById(R.id.login);
-
-
+        
     }
 
     private void login(){
