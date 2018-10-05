@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Reviews</string>
+    <string name="header">Movie Reviews</string>
+    <string name="movie1">Jurassic Park</string>
+</resources>
