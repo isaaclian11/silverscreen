@@ -1,4 +1,4 @@
-package com.login;
+package com.example.demo.login;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +27,16 @@ public class Login {
 	public String getUserName() {
 		return username;
 	}
+	/*
+	//gets username from website (Android Client)
+	public String getUserName(String username) {
+		this.username = username;
+	}
+	//gets password from website (Android client)
+	public String getPassword(String password) {
+		this.password = password;
+	}
+	*/
 	public String getPassword() {
 		return password;
 	}
