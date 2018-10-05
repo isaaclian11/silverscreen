@@ -1,11 +1,14 @@
 package com.example.isaacsanga.login;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -16,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -34,21 +38,39 @@ public class MainActivity extends AppCompatActivity {
         getEmail = (EditText) findViewById(R.id.getEmail);
         getPassword = (EditText) findViewById(R.id.getPassword);
         login = (Button) findViewById(R.id.login);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
         
     }
 
     private void login(){
-        String url = "localhost:8888/usercontrol.php";
+        String url = "http://127.0.0.1:8888/login.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if(jsonObject.names().get(0).equals("success")){
+                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), Review.class));
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Error" , Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -59,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 return param;
             }
         };
+        requestQueue.add(stringRequest);
 
     }
 
