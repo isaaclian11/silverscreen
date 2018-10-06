@@ -1,5 +1,6 @@
-package com.login;
+package com.example.demo.login;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class LoginController {
 		try {
 			logger.info("Entered the controller layer");
 			//gets usernames that match from SQL
-			Optional<Login> results = loginsRepository.findByUsername(username);
+			Collection<Login> results = loginsRepository.findByUsername(username);
 			//checks if that username is present in our data
 			if (results.isPresent()) {
 				//since it was found, there was a user with this name
