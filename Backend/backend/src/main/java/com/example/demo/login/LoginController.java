@@ -1,25 +1,45 @@
 package com.example.demo.login;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class LoginController {
+	
 	@Autowired
-	private LoginRepository loginsRepository;
+	LoginRepository loginsRepository;
 	
 	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
+	@PostMapping(path="/user")
+	public String postUser(@RequestBody Login login) {
+        logger.info("Entered into Controller Layer");
+		loginsRepository.save(login);
+        logger.info("Saved:" + login);
+		return "success";
+	}
+	
+    @RequestMapping(method = RequestMethod.GET, path = "/users")
+    public List<Login> getAllUsers() {
+        logger.info("Entered into Controller Layer");
+        List<Login> results = loginsRepository.findAll();
+        logger.info("Number of Records Fetched:" + results.size());
+        return results;
+    }
+	
+	
+	
+	
+	/*
 	@RequestMapping(method = RequestMethod.POST, path = "/Login")
 	public String checkUserName(@RequestBody String username) {
 		String status = "";

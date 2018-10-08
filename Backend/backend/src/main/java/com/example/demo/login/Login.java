@@ -15,7 +15,9 @@ import org.hibernate.annotations.NotFoundAction;
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "username")
+	private Integer id;
+	
+	@Column(name = "username")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String username;
 	
@@ -24,20 +26,28 @@ public class Login {
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String password;
 
-	public String getUserName() {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
 		return username;
 	}
-	/*
-	//gets username from website (Android Client)
-	public String getUserName(String username) {
+
+	public void setUsername(String username) {
 		this.username = username;
 	}
-	//gets password from website (Android client)
-	public String getPassword(String password) {
-		this.password = password;
-	}
-	*/
+
 	public String getPassword() {
 		return password;
 	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }
