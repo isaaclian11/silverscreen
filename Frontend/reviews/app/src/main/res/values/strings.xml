@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">Reviews</string>
     <string name="header">Movie Reviews</string>
-    <string name="movie1">Jurassic Park</string>
+    <string name="title1">Jurassic Park</string>
+    <string name="title2">\The Godfather</string>
+    <string name="title3">Lord of the Rings</string>
+    <string name="title4">\Finding Nemo</string>
+    <string name="desc1">\"The dinosaurs are pretty cool\"</string>
+    <string name="desc2">\"I love how the Don acts.\"</string>
+    <string name="desc3">\"Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo
+        Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo
+        Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo Ring Ring Ring Ring Ring Frodo \"</string>
+    <string name="desc4">\"Fish are nice\"</string>
+    <string name="rev1">Sam Habel</string>
+    <string name="rev2">Roger Ebert</string>
+    <string name="rev3">Robot Man</string>
+    <string name="rev4">Albert Einstein</string>
+    <string name="addRev">Write Review</string>
 </resources>
