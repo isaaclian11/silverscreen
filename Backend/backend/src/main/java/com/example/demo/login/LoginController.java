@@ -1,6 +1,7 @@
 package com.example.demo.login;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +36,18 @@ public class LoginController {
         logger.info("Number of Records Fetched:" + results.size());
         return results;
     }
-	
-	
+	@RequestMapping(method = RequestMethod.POST, path = "/findUser")
+	public Optional<Login> checkUserName(@RequestBody String username){
+		logger.info("Entered the controller layer");
+		Optional<Login> results = loginsRepository.findById(username);
+		return results;
+	}
+	@RequestMapping(method = RequestMethod.POST, path = "/findPassword")
+	public Optional<Login> checkPassword(@RequestBody String password){
+		logger.info("Entered the controller layer");
+		Optional<Login> results = loginsRepository.findById(password);
+		return results;
+	}
 	
 	
 	/*

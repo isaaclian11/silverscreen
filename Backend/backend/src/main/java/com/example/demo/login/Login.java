@@ -20,7 +20,6 @@ public class Login {
 	@Column(name = "username")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String username;
-	
 	//gets the row of passwords
 	@Column (name = "password")
 	@NotFound(action = NotFoundAction.EXCEPTION)
