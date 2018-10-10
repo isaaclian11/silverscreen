@@ -10,9 +10,13 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table (name = "review")
+@Table (name = "review3")
 public class Review {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
+	private Integer id;
+	
 	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String user_who_posted;
@@ -43,6 +47,9 @@ public class Review {
 		this.score = score;
 	}
 	*/
+	public int getID() {
+		return id;
+	}
 	public String getReview() {
 		return review;
 	}
