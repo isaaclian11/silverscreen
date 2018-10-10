@@ -10,10 +10,11 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table (name = "Review")
+@Table (name = "review")
 public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
 	private Integer id;
 	
 	@Column(name = "filmName")
@@ -40,28 +41,31 @@ public class Review {
 	public Integer returnScore() {
 		return score;
 	}
-	private Integer setScore() {
-		return this.score = score;
+	private void setScore(int score) {
+		this.score = score;
 	}
 	public String getReview() {
 		return review;
 	}
-	public String setReview() {
-		return this.review = review;
+	public void setReview(String review) {
+		this.review = review;
 	}
 	public String getDate() {
 		return datePosted;
 	}
+	public void addDate(String datePosted) {
+		this.datePosted = datePosted;
+	}
 	public String getUser() {
 		return userWhoPosted;
 	}
-	public String addUser() {
-		return this.userWhoPosted = userWhoPosted;
+	public void addUser(String userWhoPosted) {
+		this.userWhoPosted = userWhoPosted;
 	}
 	public String getFilmName() {
 		return filmName;
 	}
-	public String addFilm() {
-		return this.filmName = filmName;
+	public void addFilm(String filmName) {
+		 this.filmName = filmName;
 	}
 	}

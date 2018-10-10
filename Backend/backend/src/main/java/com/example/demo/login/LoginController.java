@@ -86,4 +86,9 @@ public class LoginController {
         return status;
         
 	}
+	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
+	public String addUser(Login login) {
+		loginsRepository.save(login);
+		return "Account for " + login.getUsername() + " completed successfully.";
+	}
 }
