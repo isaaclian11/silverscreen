@@ -33,9 +33,10 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button writeRev;
+    Button writeRev, refRev;
+    TextView title1, title2, title3, desc1, desc2, desc3, auth1, auth2, auth3;
     private String tag_string_req = "string_req";
-    private String url = "127.0.0.1:8888/login.php";
+    //private String url = "https://api.androidhive.info/volley/string_response.html";
     private TextView msgResponse;
     private String TAG = MainActivity.class.getSimpleName();
     private ProgressDialog pDialog;
@@ -46,26 +47,60 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         writeRev = (Button) findViewById(R.id.writeRev);
+        refRev = (Button) findViewById(R.id.refRev);
+        title1 = (TextView) findViewById(R.id.title1);
+        title2 = (TextView) findViewById(R.id.title2);
+        title3 = (TextView) findViewById(R.id.title3);
+        desc1 = (TextView) findViewById(R.id.desc1);
+        desc2 = (TextView) findViewById(R.id.desc2);
+        desc3 = (TextView) findViewById(R.id.desc3);
+        auth1 = (TextView) findViewById(R.id.auth1);
+        auth2 = (TextView) findViewById(R.id.auth2);
+        auth3 = (TextView) findViewById(R.id.auth3);
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
-        showProgressDialog();
-        StringRequest strReq = new StringRequest(Method.GET, url, new Response.Listener<String>() {
+        refRev.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onResponse(String response) {
-                Log.d(TAG, response.toString());
-                msgResponse.setText(response.toString());
-                hideProgressDialog();
+            public void onClick(View v) {
+                refRev();
             }
-            }, new Response.ErrorListener(){
-                @Override
-                public void onErrorResponse(VolleyError error){
-                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-                    hideProgressDialog();
-                }
         });
-        AppController.getmInstance().addToRequestQueue(strReq, tag_string_req);
+        writeRev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), ReviewWrite.class));
+            }
+        });
+    }
+
+    private void refRev(){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://api.androidhive.info/volley/string_response.html";
+        //String url = "http://proj309-sb-07.misc.iastate.edu";
+
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        title1.setText(response.substring(0,20));
+                        desc1.setText(response.substring(20,70));
+                        auth1.setText(response.substring(70,85));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //title1.setText("Error: " + error.toString());
+                Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
     private void showProgressDialog(){
