@@ -87,7 +87,7 @@ public class LoginController {
         
 	}
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
-	public String addUser(Login login) {
+	public String addUser(@RequestBody Login login) {
 		loginsRepository.save(login);
 		return "Account for " + login.getUsername() + " completed successfully.";
 	}

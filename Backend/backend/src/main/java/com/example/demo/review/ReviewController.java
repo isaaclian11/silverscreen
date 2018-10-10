@@ -24,7 +24,7 @@ public class ReviewController {
 	}
 	// adds a review by a user to the server
 	@RequestMapping (method = RequestMethod.POST, path = "/review/newReview")
-	public String addNewReview(Review review) {
+	public String addNewReview(@RequestBody Review review) {
 		reviewRepository.save(review);
 		return "New Review by " + review.getUser() + " successfully uploaded.";
 	}
