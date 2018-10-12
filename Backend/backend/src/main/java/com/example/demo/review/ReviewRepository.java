@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @EnableJpaRepositories
-public interface ReviewRepository extends JpaRepository <Review, String> {
+public interface ReviewRepository extends JpaRepository <Review, Integer> {
 
 }

@@ -10,23 +10,28 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table (name = "review")
+@Table (name = "review3")
 public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
 	private Integer id;
 	
-	@Column(name = "filmName")
+	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String filmName;
+	private String user_who_posted;
+	
+	@Column(name = "film_name")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private String film_name;
 	
 	//the users review in string from
 	@Column (name = "review")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String review;
 	//the score that the user gave the film
-	@Column (name = "score")
+	
+	/*@Column (name = "score")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private Integer score;
 	//the date that the user posted the review
@@ -34,9 +39,6 @@ public class Review {
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String datePosted;
 	//the username of the user who posted that review
-	@Column (name = "userWhoPosted")
-	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String userWhoPosted;
 	
 	public Integer returnScore() {
 		return score;
@@ -44,28 +46,34 @@ public class Review {
 	private void setScore(int score) {
 		this.score = score;
 	}
+	*/
+	public int getID() {
+		return id;
+	}
 	public String getReview() {
 		return review;
 	}
 	public void setReview(String review) {
 		this.review = review;
 	}
+	/*
 	public String getDate() {
 		return datePosted;
 	}
 	public void addDate(String datePosted) {
 		this.datePosted = datePosted;
 	}
+	*/
 	public String getUser() {
-		return userWhoPosted;
+		return user_who_posted;
 	}
-	public void addUser(String userWhoPosted) {
-		this.userWhoPosted = userWhoPosted;
+	public void addUser(String user_who_posted) {
+		this.user_who_posted = user_who_posted;
 	}
 	public String getFilmName() {
-		return filmName;
+		return film_name;
 	}
-	public void addFilm(String filmName) {
-		 this.filmName = filmName;
+	public void addFilm(String film_name) {
+		 this.film_name = film_name;
 	}
-	}
+}
