@@ -41,18 +41,27 @@ public class Register extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                try {
+                    register();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    private void register(){
+    private void register() throws JSONException {
         String url = "http://10.26.3.42:8888/register.php";
+        final String email = registerEmail.getText().toString();
+        final String password = registerPassword.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", email);
+        jsonObject.put("password", password);
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                if(registerEmail.getText().toString().isEmpty() || registerPassword.getText().toString().isEmpty()){
+                if(email.isEmpty() || password.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Both fields need to be filled", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -75,22 +84,7 @@ public class Register extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> param = new HashMap<>();
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("username", registerEmail.getText().toString());
-                    jsonObject.put("password", registerPassword.getText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                param.put("register", jsonObject.toString());
-                return param;
-            }
-        };
+        });
         requestQueue.add(stringRequest);
     }
 }

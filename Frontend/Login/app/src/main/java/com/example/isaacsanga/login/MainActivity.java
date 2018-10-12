@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                try {
+                    login();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +63,14 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
-    private void login(){
+    private void login() throws JSONException {
+        String email= getEmail.getText().toString();
+        String password = getPassword.getText().toString();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", email);
+        jsonObject.put("password", password);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -80,21 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("username", getEmail.getText().toString());
-                    jsonObject.put("password", getPassword.getText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Map<String, String> param = new HashMap<>();
-                param.put("login", jsonObject.toString());
-                return param;
-            }
-        };
+        });
         requestQueue.add(jsonObjectRequest);
     }
 
