@@ -13,8 +13,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,20 +47,26 @@ public class Register extends AppCompatActivity {
     }
 
     private void register(){
-        String url = "http://10.36.49.57/register.php";
+        String url = "http://10.26.3.42:8888/register.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 if(registerEmail.getText().toString().isEmpty() || registerPassword.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Both fields need to be filled", Toast.LENGTH_SHORT).show();
                 }
-                else if(response.trim().equals("success")){
-                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Review.class));
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_SHORT).show();
+                else {
+                    try {
+                        if(response.get("result").equals("success")){
+                            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Review.class));
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -69,10 +79,15 @@ public class Register extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
-                String getEmail = registerEmail.getText().toString();
-                String getPassword = registerPassword.getText().toString();
-                param.put("username", getEmail);
-                param.put("password", getPassword);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("username", registerEmail.getText().toString());
+                    jsonObject.put("password", registerPassword.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                param.put("register", jsonObject.toString());
                 return param;
             }
         };

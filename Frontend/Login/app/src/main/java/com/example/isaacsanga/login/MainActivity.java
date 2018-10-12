@@ -19,6 +19,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://10.36.49.57/login.php";
+    final String url = "http://10.26.3.42:8888/login.php";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
@@ -59,15 +61,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void login(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                if(response.trim().equals("success")){
-                    Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Review.class));
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.get("result").equals("success")) {
+                        Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), Review.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
+                    }
+                }catch(JSONException e){
+                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
@@ -78,14 +83,19 @@ public class MainActivity extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("username", getEmail.getText().toString());
+                    jsonObject.put("password", getPassword.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 Map<String, String> param = new HashMap<>();
-                param.put("username", getEmail.getText().toString());
-                param.put("password", getPassword.getText().toString());
+                param.put("login", jsonObject.toString());
                 return param;
             }
         };
-        requestQueue.add(stringRequest);
-
+        requestQueue.add(jsonObjectRequest);
     }
 
 
