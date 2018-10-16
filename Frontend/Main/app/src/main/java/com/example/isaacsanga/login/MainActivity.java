@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://10.26.3.42:8888/login.php";
+    final String url = "http://proj309-sb-07.misc.iastate.edu/login/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;

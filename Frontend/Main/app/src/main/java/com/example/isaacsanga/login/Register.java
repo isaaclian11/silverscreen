@@ -51,7 +51,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void register() throws JSONException {
-        String url = "http://10.26.3.42:8888/register.php";
+        String url = "http://proj309-sb-07.misc.iastate.edu/login/add";
         final String email = registerEmail.getText().toString();
         final String password = registerPassword.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
