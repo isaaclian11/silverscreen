@@ -26,7 +26,7 @@ public class ReviewController {
 	@RequestMapping (method = RequestMethod.POST, path = "/review/newReview")
 	public String addNewReview(@RequestBody Review review) {
 		reviewRepository.save(review);
-		return "New Review by " + review.getUser() + " successfully uploaded.";
+		return "New Review by " + review.getuser_who_posted() + " successfully uploaded.";
 	}
 
 
