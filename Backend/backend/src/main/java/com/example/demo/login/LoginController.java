@@ -1,7 +1,6 @@
 package com.example.demo.login;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class LoginController {
     }
     
 	@RequestMapping(method = RequestMethod.POST, path = "/users111")
-	public String checkUserName(@RequestBody String loginInformation) 
+	public jsonResponse checkUserName(@RequestBody String loginInformation)
 	{
 		System.out.println("==========POST method called");
 		System.out.println("username = " + loginInformation);
@@ -81,14 +80,17 @@ public class LoginController {
         {
         	status = "success";
         }
-        System.out.print("Status = " + status);	
+        System.out.print("Status = " + status);
+
+        jsonResponse jsonResponse = new jsonResponse(status);
         
-        return status;
+        return jsonResponse;
         
 	}
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
-	public String addUser(@RequestBody Login login) {
+	public jsonResponse addUser(@RequestBody Login login) {
 		loginsRepository.save(login);
-		return "success";
+		jsonResponse jsonResponse = new jsonResponse("success");
+		return jsonResponse;
 	}
 }
