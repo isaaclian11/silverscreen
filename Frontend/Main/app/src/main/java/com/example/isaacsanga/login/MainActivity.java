@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://proj309-sb-07.misc.iastate.edu/login/users111";
+    final String url = "http://proj309-sb-07.misc.iastate.edu:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
@@ -74,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.get("result").equals("success")) {
+                    if (response.get("s").equals("success")) {
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), Profile.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
                     }
-                }catch(JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

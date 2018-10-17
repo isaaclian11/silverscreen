@@ -2,6 +2,8 @@ package com.example.isaacsanga.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Profile extends AppCompatActivity {
 
@@ -10,6 +12,8 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        ImageView imageView = findViewById(R.id.profileImg);
+        TextView textView = findViewById(R.id.getName);
 
     }
 }
