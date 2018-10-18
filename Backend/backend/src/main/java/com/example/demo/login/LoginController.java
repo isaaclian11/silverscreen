@@ -89,8 +89,14 @@ public class LoginController {
 	}
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
 	public jsonResponse addUser(@RequestBody Login login) {
-		loginsRepository.save(login);
-		jsonResponse jsonResponse = new jsonResponse("success");
-		return jsonResponse;
+		if (loginsRepository.existsById(login.getUsername()) == true){
+			jsonResponse x = new jsonResponse("failure");
+			return x;
+		}
+		else {
+			loginsRepository.save(login);
+			jsonResponse jsonResponse = new jsonResponse("success");
+			return jsonResponse;
+		}
 	}
 }
