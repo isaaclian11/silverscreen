@@ -7,7 +7,7 @@ public class jsonResponse {
         this.s = s;
     }
 
-    public String getRespons(){
+    public String getResponse(){
         return s;
     }
 
