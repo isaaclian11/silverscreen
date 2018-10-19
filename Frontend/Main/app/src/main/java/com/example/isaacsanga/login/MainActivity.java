@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.get("s").equals("success")) {
+                    if (response.get("respons").equals("success")) {
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), Profile.class));
                     } else {
