@@ -75,8 +75,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.get("respons").equals("success")) {
+                        String firstname = response.getString("firstname");
+                        String lastname = response.getString("lastname");
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), Profile.class));
+                        Intent loginIntent = new Intent(getApplicationContext(), Profile.class);
+                        loginIntent.putExtra("firstname", firstname);
+                        loginIntent.putExtra("lastname", lastname);
+                        startActivity(loginIntent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
                     }
