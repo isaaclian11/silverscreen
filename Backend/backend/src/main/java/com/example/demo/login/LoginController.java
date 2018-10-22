@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.YamlJsonParser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,36 +57,28 @@ public class LoginController {
         System.out.println(results.toString()); 
         
         int i =0; 
-        boolean found = false;
-        while (!found & i < results.size())
+        while (i < results.size())
         {
         	System.out.println(results.get(i).getUsername());
         	System.out.println(results.get(i).getPassword());
         	
         	String uName = results.get(i).getUsername();
         	String uPass = results.get(i).getPassword();
+
+        	String firstname = results.get(i).getFirstname();
+        	String lastname = results.get(i).getLastname();
         	
         	if (userName.equals(uName) && password.equals(uPass))
         	{
-        		found = true;
+        		jsonResponse jsonResponse = new jsonResponse(results.get(i), "success");
+        		return jsonResponse;
         		//System.out.println("FOUND = " + found);
         	}
         	i++;
         	//System.out.println("**************");
         }
-        
-        
-        String status = "fail";
-        if (found)
-        {
-        	status = "success";
-        }
-        System.out.print("Status = " + status);
-
-        jsonResponse jsonResponse = new jsonResponse(status);
-        
+        jsonResponse jsonResponse = new jsonResponse("failure");
         return jsonResponse;
-        
 	}
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
 	public jsonResponse addUser(@RequestBody Login login) {
@@ -95,7 +88,7 @@ public class LoginController {
 		}
 		else {
 			loginsRepository.save(login);
-			jsonResponse jsonResponse = new jsonResponse("success");
+			jsonResponse jsonResponse = new jsonResponse(login, "success");
 			return jsonResponse;
 		}
 	}
