@@ -70,7 +70,6 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         if(item.getItemId()==R.id.profile_menu){
             Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(gallery, IMAGE_RESULT);
-            Toast.makeText(this, "YAY", Toast.LENGTH_SHORT).show();
         }
         return false;
     }

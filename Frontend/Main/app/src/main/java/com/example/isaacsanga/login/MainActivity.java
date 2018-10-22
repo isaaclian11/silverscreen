@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://proj309-sb-07.misc.iastate.edu:8080/users111";
+    final String url = "http://10.29.180.75:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.get("respons").equals("success")) {
+                    if (response.get("result").equals("success")) {
                         String firstname = response.getString("firstname");
                         String lastname = response.getString("lastname");
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
