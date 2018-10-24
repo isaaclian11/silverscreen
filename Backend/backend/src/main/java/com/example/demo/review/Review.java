@@ -10,16 +10,20 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table (name = "Review")
-public class Review 
-{
+@Table (name = "review2")
+public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
 	private Integer id;
 	
-	@Column(name = "filmName")
+	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String filmName;
+	private String user_who_posted;
+	
+	@Column(name = "film_name")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private String film_name;
 	
 	//the users review in string from
 	@Column (name = "review")
@@ -27,7 +31,8 @@ public class Review
 	private String review;
 	
 	//the score that the user gave the film
-	@Column (name = "score")
+	
+	/*@Column (name = "score")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private Integer score;
 	
@@ -37,43 +42,43 @@ public class Review
 	private String datePosted;
 	
 	//the username of the user who posted that review
-	@Column (name = "userWhoPosted")
-	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String userWhoPosted;
 	
 	public Integer returnScore() {
 		return score;
 	}
-	
-	private Integer setScore() {
-		return this.score = score;
+	private void setScore(int score) {
+		this.score = score;
+	}
+	*/
+	public int getID() {
+		return id;
 	}
 	
 	public String getReview() {
 		return review;
 	}
-	
-	public String setReview() {
-		return this.review = review;
+
+	public void setReview(String review) {
+		this.review = review;
 	}
-	
+	/*
 	public String getDate() {
 		return datePosted;
 	}
-	
-	public String getUser() {
-		return userWhoPosted;
+	public void addDate(String datePosted) {
+		this.datePosted = datePosted;
 	}
-	
-	public String addUser() {
-		return this.userWhoPosted = userWhoPosted;
+	*/
+	public String getuser_who_posted() {
+		return user_who_posted;
 	}
-	
-	public String getFilmName() {
-		return filmName;
+	public void setUser_who_posted(String user_who_posted) {
+		this.user_who_posted = user_who_posted;
 	}
-	
-	public String addFilm() {
-		return this.filmName = filmName;
+	public String getFilm_name() {
+		return film_name;
+	}
+	public void setFilm_name(String film_name) {
+		 this.film_name = film_name;
 	}
 }

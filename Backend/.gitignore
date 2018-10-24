@@ -5,6 +5,8 @@
 *.dex
 *.dex
 *.class
+*.log
+*.gz
 bin/
 gen/
 local.properties
