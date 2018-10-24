@@ -56,7 +56,7 @@ public class LoginController {
         logger.info("========Number of Records Fetched:" + results.size());
         System.out.println(results.toString()); 
         
-        int i =0; 
+        int i = 0; 
         boolean found = false;
         while (!found & i < results.size())
         {
@@ -71,10 +71,10 @@ public class LoginController {
         		found = true;
         		//System.out.println("FOUND = " + found);
         	}
+        	
         	i++;
         	//System.out.println("**************");
         }
-        
         
         String status = "fail";
         if (found)
@@ -84,6 +84,5 @@ public class LoginController {
         System.out.print("Status = " + status);	
         
         return status;
-        
 	}
 }
