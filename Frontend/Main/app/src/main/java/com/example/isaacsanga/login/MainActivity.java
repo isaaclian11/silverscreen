@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://10.26.50.44:8080/users111";
+    final String url = "http://10.26.14.43:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;

@@ -11,19 +11,16 @@ import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -31,11 +28,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -56,7 +49,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        imageView = findViewById(R.id.profileImg);
+        imageView = findViewById(R.id.name);
         textView = findViewById(R.id.getName);
         String firstname = getIntent().getStringExtra("firstname");
         String lastname = getIntent().getStringExtra("lastname");
@@ -64,7 +57,9 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         listView = findViewById(R.id.activityFeed);
 
         names = new String[]{"Isaac Lal", "Isaac Sanga", "Isaac Lian", "Isaac Din", "Isaac S"};
-        descriptions = new String[]{"Great movie1", "Fantastic film", "Worst film", "Really enjoyed it", "Want to see it again!"};
+        descriptions = new String[]{"Bohemian Rhapsody, the long-awaited musical biopic about British rock band Queen and particularly their lead singer Freddie Mercury, traveled a rocky road during its journey to the big screen. The movie went through multiple changes in personnel (lead actor in particular) before Rami Malek was cast as Mercury and Bryan Singer signed on to direct. Bohemian Rhapsody's woes didn't end there either, as Singer was fired in the midst of production for his unexplained absence from the film's set, after clashing with the cast/crew. Unfortunately, the final movie result doesn't really justify all the fuss it took to get made, either. Despite a strong performance by Malek, Bohemian Rhapsody plays out as an excessively sanitized version of Queen's story, rather than a labor of love.\n" +
+                "\n" +
+                "The film picks up in London circa 1970, when Freddie (then still going by his birth name, Farrokh Bulsara) is a college-aged young man who works as a baggage handler at Heathrow Airport, but intends to make his name as a musician. One night, after watching local up and comer band Smile perform, Freddie convinces their guitarist Brian May (Gwilym Lee) and drummer Roger Taylor (Ben Hardy) to make him their new leader singer, after giving them a taste of his incredible vocal range. The three later add bass guitarist John Deacon (Joseph Mazzello) to their ranks and dub their new band Queen (a name picked out by Freddie).", "Fantastic film", "Worst film", "Really enjoyed it", "Want to see it again!"};
         pictures = new int[]{R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4, R.drawable.user5};
 
         for(int i=0; i<names.length; i++){

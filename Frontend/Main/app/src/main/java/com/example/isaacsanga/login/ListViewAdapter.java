@@ -7,12 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.zip.Inflater;
 
 public class ListViewAdapter extends BaseAdapter {
 
@@ -61,7 +59,7 @@ public class ListViewAdapter extends BaseAdapter {
 
             holder.name = convertView.findViewById(R.id.Name);
             holder.desc = convertView.findViewById(R.id.getStatus);
-            holder.profile = convertView.findViewById(R.id.picture);
+            holder.profile = convertView.findViewById(R.id.name);
 
             convertView.setTag(holder);
         }
