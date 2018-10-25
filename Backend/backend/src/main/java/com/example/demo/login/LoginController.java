@@ -22,18 +22,22 @@ public class LoginController {
 	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@PostMapping(path = "/user")
-	public String postUser(@RequestBody Login login) {
+	public String postUser(@RequestBody Login login) 
+	{
         logger.info("Entered into Controller Layer");
 		loginsRepository.save(login);
         logger.info("Saved:" + login);
-		return "success";
+		
+        return "success";
 	}
 	
     @RequestMapping(method = RequestMethod.GET, path = "/users")
-    public List<Login> getAllUsers() {
+    public List<Login> getAllUsers() 
+    {
         logger.info("Entered into Controller Layer");
         List<Login> results = loginsRepository.findAll();
         logger.info("Number of Records Fetched:" + results.size());
+        
         return results;
     }
     
