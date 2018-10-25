@@ -3,11 +3,12 @@ package com.example.demo.review;
 public class jsonResponse {
 
     private String s;
+    
     public jsonResponse(String s){
         this.s = s;
     }
 
-    public String getRespons(){
+    public String getResponse(){
         return s;
     }
 
