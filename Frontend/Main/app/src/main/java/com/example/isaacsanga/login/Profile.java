@@ -11,6 +11,8 @@ import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +42,14 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     private static final int IMAGE_RESULT = 1;
     ImageView imageView;
     TextView textView;
+    ListView listView;
     Bitmap bitmap;
-    String URL = "http://proj309-ds-03.misc.iastate.edu:8080/post/new/image";
+    String URL = "http://proj309-sb-07.misc.iastate.edu:8080";
+    String[] names;
+    String[] descriptions;
+    int[] pictures;
+    ArrayList<Model> arrayList = new ArrayList<>();
+    ListViewAdapter listViewAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,6 +61,23 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         String firstname = getIntent().getStringExtra("firstname");
         String lastname = getIntent().getStringExtra("lastname");
         textView.setText(firstname + " " +lastname);
+        listView = findViewById(R.id.activityFeed);
+
+        names = new String[]{"Isaac Lal", "Isaac Sanga", "Isaac Lian", "Isaac Din", "Isaac S"};
+        descriptions = new String[]{"Great movie1", "Fantastic film", "Worst film", "Really enjoyed it", "Want to see it again!"};
+        pictures = new int[]{R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4, R.drawable.user5};
+
+        for(int i=0; i<names.length; i++){
+            Model model = new Model(names[i], descriptions[i], pictures[i]);
+            arrayList.add(model);
+        }
+
+        listViewAdapter = new ListViewAdapter(this, arrayList);
+
+        listView.setAdapter(listViewAdapter);
+
+
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +88,6 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                 popupMenu.show();
             }
         });
-
     }
 
     @Override
