@@ -18,15 +18,24 @@ public class ReviewController {
 	
 	//finds all reviews
 	@RequestMapping(method = RequestMethod.GET, path = "/review/reviews")
-	public List <Review> getReviews() {
+	public List <Review> getReviews() 
+	{
 		List<Review> results = reviewRepository.findAll();
 		return results;
 	}
+	
 	// adds a review by a user to the server
 	@RequestMapping (method = RequestMethod.POST, path = "/review/newReview")
-	public jsonResponse addNewReview(@RequestBody Review review) {
+	public jsonResponse addNewReview(@RequestBody Review review) 
+	{
 		reviewRepository.save(review);
 		jsonResponse jsonResponse = new jsonResponse("success");
 		return jsonResponse;
 	}
+	/*
+	public List<Review> findReviewsOfUserFriends(String userName)
+	{
+		
+	}
+	*/
 }

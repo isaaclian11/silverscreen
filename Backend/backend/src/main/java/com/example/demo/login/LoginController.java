@@ -40,27 +40,27 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, path = "/users111")
 	public jsonResponse checkUserName(@RequestBody String loginInformation)
 	{
-		System.out.println("==========POST method called");
-		System.out.println("username = " + loginInformation);
+		//System.out.println("==========POST method called");
+		//System.out.println("username = " + loginInformation);
 		
 		String delims = "[\"]";
 		String[] tokens = loginInformation.split(delims);
 
 		String userName = tokens[3];
 		String password = tokens[7];
-		System.out.println("username = " + userName);
-		System.out.println("password = " + password);
+		//System.out.println("username = " + userName);
+		//System.out.println("password = " + password);
 		
         logger.info("Entered into Controller Layer");
         List<Login> results = loginsRepository.findAll();
         logger.info("========Number of Records Fetched:" + results.size());
-        System.out.println(results.toString()); 
+        //System.out.println(results.toString()); 
         
-        int i =0; 
+        int i = 0; 
         while (i < results.size())
         {
-        	System.out.println(results.get(i).getUsername());
-        	System.out.println(results.get(i).getPassword());
+        	//System.out.println(results.get(i).getUsername());
+        	//System.out.println(results.get(i).getPassword());
         	
         	String uName = results.get(i).getUsername();
         	String uPass = results.get(i).getPassword();
@@ -81,6 +81,7 @@ public class LoginController {
         jsonResponse jsonResponse = new jsonResponse("failure");
         return jsonResponse;
 	}
+	
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
 	public jsonResponse addUser(@RequestBody Login login) {
 		if (loginsRepository.existsById(login.getUsername()) == true){
