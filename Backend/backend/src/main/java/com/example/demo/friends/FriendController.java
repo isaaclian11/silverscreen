@@ -1,4 +1,4 @@
-package com.example.demo.login;
+package com.example.demo.friends;
 
 import java.util.List;
 
@@ -14,21 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class LoginController {
-	
+public class FriendController 
+{
 	@Autowired
-	LoginRepository loginsRepository;
+	FriendRepository friendsRepository;
 	
-	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private final Logger logger = LoggerFactory.getLogger(FriendController.class);
 	
-	@PostMapping(path = "/user")
-	public String postUser(@RequestBody Login login) {
+	@PostMapping(path="/friends")
+	public String postUser(@RequestBody Friend friend) 
+	{
         logger.info("Entered into Controller Layer");
-		loginsRepository.save(login);
-        logger.info("Saved:" + login);
+		friendsRepository.save(friend);
+        logger.info("Saved:" + friend);
 		return "success";
 	}
-	
+	/*
     @RequestMapping(method = RequestMethod.GET, path = "/users")
     public List<Login> getAllUsers() {
         logger.info("Entered into Controller Layer");
@@ -94,4 +95,6 @@ public class LoginController {
 			return jsonResponse;
 		}
 	}
+	*/
 }
+
