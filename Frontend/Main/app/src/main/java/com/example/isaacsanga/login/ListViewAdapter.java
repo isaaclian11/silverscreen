@@ -81,21 +81,4 @@ public class ListViewAdapter extends BaseAdapter {
 
         return convertView;
     }
-
-    public void filter(String charText){
-        charText = charText.toLowerCase(Locale.getDefault());
-        list.clear();
-        if(charText.length()==0){
-            list.addAll(arrayList);
-        }
-        else{
-            for(Model model: arrayList){
-                if(model.getName().toLowerCase(Locale.getDefault()).contains(charText)){
-                    list.add(model);
-                }
-            }
-        }
-        notifyDataSetChanged();
-
-    }
 }

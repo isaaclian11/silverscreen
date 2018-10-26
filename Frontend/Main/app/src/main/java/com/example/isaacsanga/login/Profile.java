@@ -74,6 +74,14 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                         names.add(reviews.getString("user_who_posted"));
                         descriptions.add(reviews.getString("review"));
                     }
+                    for(int i=0; i<names.size(); i++){
+                        Model model = new Model(names.get(i), descriptions.get(i));
+                        arrayList.add(model);
+                    }
+
+                    listViewAdapter = new ListViewAdapter(getApplicationContext(), arrayList);
+                    listView.setAdapter(listViewAdapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -86,15 +94,6 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonRequest);
-
-        for(int i=0; i<names.size(); i++){
-            Model model = new Model(names.get(i), descriptions.get(i));
-            arrayList.add(model);
-        }
-
-        listViewAdapter = new ListViewAdapter(this, arrayList);
-
-        listView.setAdapter(listViewAdapter);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
