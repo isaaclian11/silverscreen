@@ -21,8 +21,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,10 +39,9 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     TextView textView;
     ListView listView;
     Bitmap bitmap;
-    String URL = "http://proj309-sb-07.misc.iastate.edu:8080";
-    String[] names;
-    String[] descriptions;
-    int[] pictures;
+    String URL = "http://10.36.48.157:8080/review/friendsReview";
+    ArrayList<String>names = new ArrayList<>();
+    ArrayList<String> descriptions = new ArrayList<>();
     ArrayList<Model> arrayList = new ArrayList<>();
     ListViewAdapter listViewAdapter;
     @Override
@@ -55,24 +56,45 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         String lastname = getIntent().getStringExtra("lastname");
         textView.setText(firstname + " " +lastname);
         listView = findViewById(R.id.activityFeed);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("user_who_posted", getIntent().getStringExtra("username"));
 
-        names = new String[]{"Isaac Lal", "Isaac Sanga", "Isaac Lian", "Isaac Din", "Isaac S"};
-        descriptions = new String[]{"Bohemian Rhapsody, the long-awaited musical biopic about British rock band Queen and particularly their lead singer Freddie Mercury, traveled a rocky road during its journey to the big screen. The movie went through multiple changes in personnel (lead actor in particular) before Rami Malek was cast as Mercury and Bryan Singer signed on to direct. Bohemian Rhapsody's woes didn't end there either, as Singer was fired in the midst of production for his unexplained absence from the film's set, after clashing with the cast/crew. Unfortunately, the final movie result doesn't really justify all the fuss it took to get made, either. Despite a strong performance by Malek, Bohemian Rhapsody plays out as an excessively sanitized version of Queen's story, rather than a labor of love.\n" +
-                "\n" +
-                "The film picks up in London circa 1970, when Freddie (then still going by his birth name, Farrokh Bulsara) is a college-aged young man who works as a baggage handler at Heathrow Airport, but intends to make his name as a musician. One night, after watching local up and comer band Smile perform, Freddie convinces their guitarist Brian May (Gwilym Lee) and drummer Roger Taylor (Ben Hardy) to make him their new leader singer, after giving them a taste of his incredible vocal range. The three later add bass guitarist John Deacon (Joseph Mazzello) to their ranks and dub their new band Queen (a name picked out by Freddie).", "Fantastic film", "Worst film", "Really enjoyed it", "Want to see it again!"};
-        pictures = new int[]{R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4, R.drawable.user5};
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        for(int i=0; i<names.length; i++){
-            Model model = new Model(names[i], descriptions[i], pictures[i]);
+        JsonRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("response");
+                    for(int i=0; i<jsonArray.length(); i++){
+                        JSONObject reviews = jsonArray.getJSONObject(i);
+                        names.add(reviews.getString("user_who_posted"));
+                        descriptions.add(reviews.getString("review"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonRequest);
+
+        for(int i=0; i<names.size(); i++){
+            Model model = new Model(names.get(i), descriptions.get(i));
             arrayList.add(model);
         }
 
         listViewAdapter = new ListViewAdapter(this, arrayList);
 
         listView.setAdapter(listViewAdapter);
-
-
-
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

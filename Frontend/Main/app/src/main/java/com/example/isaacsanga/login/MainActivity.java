@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://10.26.14.43:8080/users111";
+    final String url = "http://10.36.48.157:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login() throws JSONException {
-        String email= getEmail.getText().toString();
+        final String email= getEmail.getText().toString();
         String password = getPassword.getText().toString();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("username", email);
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent loginIntent = new Intent(getApplicationContext(), Profile.class);
                         loginIntent.putExtra("firstname", firstname);
                         loginIntent.putExtra("lastname", lastname);
+                        loginIntent.putExtra("username", email);
                         startActivity(loginIntent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();

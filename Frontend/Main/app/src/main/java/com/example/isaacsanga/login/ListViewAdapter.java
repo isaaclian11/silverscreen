@@ -70,7 +70,6 @@ public class ListViewAdapter extends BaseAdapter {
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDesc());
 
-        holder.profile.setImageResource(list.get(position).getId());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
