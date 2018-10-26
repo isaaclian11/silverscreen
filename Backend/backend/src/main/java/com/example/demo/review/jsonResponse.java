@@ -1,18 +1,20 @@
 package com.example.demo.review;
 
+import java.util.List;
+
 public class jsonResponse {
 
-    private String s;
+    private List<Review> s;
     
-    public jsonResponse(String s){
+    public jsonResponse(List<Review> s){
         this.s = s;
     }
 
-    public String getResponse(){
+    public List<Review> getResponse(){
         return s;
     }
 
-    public void getResponse(String response){
+    public void getResponse(List<Review> response){
         this.s = response;
     }
 }

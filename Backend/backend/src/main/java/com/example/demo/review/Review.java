@@ -10,26 +10,22 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table (name = "review2")
+@Table (name = "review")
 public class Review {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private Integer id;
-	
 	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String user_who_posted;
 	
-	@Column(name = "film_name")
-	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String film_name;
+//	@Column(name = "film_name")
+//	@NotFound(action = NotFoundAction.EXCEPTION)
+//	private String film_name;
 	
 	//the users review in string from
 	@Column (name = "review")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String review;
-	
+
 	//the score that the user gave the film
 	
 	/*@Column (name = "score")
@@ -50,10 +46,6 @@ public class Review {
 		this.score = score;
 	}
 	*/
-	public int getID() {
-		return id;
-	}
-	
 	public String getReview() {
 		return review;
 	}
@@ -75,10 +67,10 @@ public class Review {
 	public void setUser_who_posted(String user_who_posted) {
 		this.user_who_posted = user_who_posted;
 	}
-	public String getFilm_name() {
-		return film_name;
-	}
-	public void setFilm_name(String film_name) {
-		 this.film_name = film_name;
-	}
+//	public String getFilm_name() {
+//		return film_name;
+//	}
+//	public void setFilm_name(String film_name) {
+//		 this.film_name = film_name;
+//	}
 }
