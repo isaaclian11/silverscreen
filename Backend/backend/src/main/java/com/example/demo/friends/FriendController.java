@@ -18,6 +18,7 @@ import com.example.demo.login.Login;
 @RestController
 public class FriendController 
 {
+	
 	@Autowired
 	FriendRepository friendsRepository;
 	
@@ -43,7 +44,7 @@ public class FriendController
         return results;
     }
     
-
+	
 
 }
 
