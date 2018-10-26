@@ -11,31 +11,26 @@ import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -44,10 +39,9 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     TextView textView;
     ListView listView;
     Bitmap bitmap;
-    String URL = "http://proj309-sb-07.misc.iastate.edu:8080";
-    String[] names;
-    String[] descriptions;
-    int[] pictures;
+    String URL = "http://10.36.48.157:8080/review/friendsReview";
+    ArrayList<String>names = new ArrayList<>();
+    ArrayList<String> descriptions = new ArrayList<>();
     ArrayList<Model> arrayList = new ArrayList<>();
     ListViewAdapter listViewAdapter;
     @Override
@@ -56,28 +50,50 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        imageView = findViewById(R.id.profileImg);
+        imageView = findViewById(R.id.name);
         textView = findViewById(R.id.getName);
         String firstname = getIntent().getStringExtra("firstname");
         String lastname = getIntent().getStringExtra("lastname");
         textView.setText(firstname + " " +lastname);
         listView = findViewById(R.id.activityFeed);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("user_who_posted", getIntent().getStringExtra("username"));
 
-        names = new String[]{"Isaac Lal", "Isaac Sanga", "Isaac Lian", "Isaac Din", "Isaac S"};
-        descriptions = new String[]{"Great movie1", "Fantastic film", "Worst film", "Really enjoyed it", "Want to see it again!"};
-        pictures = new int[]{R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4, R.drawable.user5};
-
-        for(int i=0; i<names.length; i++){
-            Model model = new Model(names[i], descriptions[i], pictures[i]);
-            arrayList.add(model);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        listViewAdapter = new ListViewAdapter(this, arrayList);
+        JsonRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("response");
+                    for(int i=0; i<jsonArray.length(); i++){
+                        JSONObject reviews = jsonArray.getJSONObject(i);
+                        names.add(reviews.getString("user_who_posted"));
+                        descriptions.add(reviews.getString("review"));
+                    }
+                    for(int i=0; i<names.size(); i++){
+                        Model model = new Model(names.get(i), descriptions.get(i));
+                        arrayList.add(model);
+                    }
 
-        listView.setAdapter(listViewAdapter);
+                    listViewAdapter = new ListViewAdapter(getApplicationContext(), arrayList);
+                    listView.setAdapter(listViewAdapter);
 
-
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonRequest);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

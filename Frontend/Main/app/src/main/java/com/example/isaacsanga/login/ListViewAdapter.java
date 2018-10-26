@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.zip.Inflater;
 
 public class ListViewAdapter extends BaseAdapter {
 
@@ -60,7 +59,7 @@ public class ListViewAdapter extends BaseAdapter {
 
             holder.name = convertView.findViewById(R.id.Name);
             holder.desc = convertView.findViewById(R.id.getStatus);
-            holder.profile = convertView.findViewById(R.id.picture);
+            holder.profile = convertView.findViewById(R.id.name);
 
             convertView.setTag(holder);
         }
@@ -71,7 +70,6 @@ public class ListViewAdapter extends BaseAdapter {
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDesc());
 
-        holder.profile.setImageResource(list.get(position).getId());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,22 +80,5 @@ public class ListViewAdapter extends BaseAdapter {
 
 
         return convertView;
-    }
-
-    public void filter(String charText){
-        charText = charText.toLowerCase(Locale.getDefault());
-        list.clear();
-        if(charText.length()==0){
-            list.addAll(arrayList);
-        }
-        else{
-            for(Model model: arrayList){
-                if(model.getName().toLowerCase(Locale.getDefault()).contains(charText)){
-                    list.add(model);
-                }
-            }
-        }
-        notifyDataSetChanged();
-
     }
 }

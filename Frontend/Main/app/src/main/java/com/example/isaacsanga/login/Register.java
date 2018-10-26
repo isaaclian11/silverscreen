@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void register() throws JSONException {
-        String url = "http://10.36.50.230:8080/login/add";
+        String url = "http://10.36.48.157:8080/login/add";
         final String email = registerEmail.getText().toString();
         final String password = registerPassword.getText().toString();
         final String fName = firstname.getText().toString();
