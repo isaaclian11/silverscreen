@@ -1,6 +1,7 @@
 package com.example.isaacsanga.login;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     }
 
-    public class ViewHolder{
+    private class ViewHolder{
         TextView name, desc;
         ImageView profile;
     }
@@ -59,7 +60,7 @@ public class ListViewAdapter extends BaseAdapter {
 
             holder.name = convertView.findViewById(R.id.Name);
             holder.desc = convertView.findViewById(R.id.getStatus);
-            holder.profile = convertView.findViewById(R.id.name);
+            holder.profile = convertView.findViewById(R.id.userProfile);
 
             convertView.setTag(holder);
         }
@@ -69,7 +70,6 @@ public class ListViewAdapter extends BaseAdapter {
 
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDesc());
-
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

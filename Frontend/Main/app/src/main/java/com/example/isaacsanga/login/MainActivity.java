@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String url = "http://10.36.48.157:8080/users111";
+    final String url = "http://10.36.51.115:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
+    //It converts the username and password into Json format and sends it to the server
     private void login() throws JSONException {
         final String email= getEmail.getText().toString();
         String password = getPassword.getText().toString();
@@ -75,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.get("result").equals("success")) {
+                        //response returns the first and last name of the user
                         String firstname = response.getString("firstname");
                         String lastname = response.getString("lastname");
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
                         Intent loginIntent = new Intent(getApplicationContext(), Profile.class);
+                        //passes on the first and last name to the next Activity
                         loginIntent.putExtra("firstname", firstname);
                         loginIntent.putExtra("lastname", lastname);
                         loginIntent.putExtra("username", email);

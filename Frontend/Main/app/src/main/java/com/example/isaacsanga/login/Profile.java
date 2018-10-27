@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -39,7 +40,8 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     TextView textView;
     ListView listView;
     Bitmap bitmap;
-    String URL = "http://10.36.48.157:8080/review/friendsReview";
+    String URL = "http://10.36.51.115:8080/review/friendsReview";
+    Button findFriends, latestMovies;
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String> descriptions = new ArrayList<>();
     ArrayList<Model> arrayList = new ArrayList<>();
@@ -50,7 +52,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        imageView = findViewById(R.id.name);
+        imageView = findViewById(R.id.userProfile);
         textView = findViewById(R.id.getName);
         String firstname = getIntent().getStringExtra("firstname");
         String lastname = getIntent().getStringExtra("lastname");
@@ -75,7 +77,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                         descriptions.add(reviews.getString("review"));
                     }
                     for(int i=0; i<names.size(); i++){
-                        Model model = new Model(names.get(i), descriptions.get(i));
+                        Model model = new Model(names.get(i), descriptions.get(i), "");
                         arrayList.add(model);
                     }
 
@@ -102,6 +104,17 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                 popupMenu.setOnMenuItemClickListener(Profile.this);
                 popupMenu.inflate(R.menu.profile_picture);
                 popupMenu.show();
+            }
+        });
+
+        findFriends = findViewById(R.id.findFriends);
+        latestMovies = findViewById(R.id.latestMovies);
+
+        latestMovies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LatestMovies.class);
+                startActivity(intent);
             }
         });
     }
