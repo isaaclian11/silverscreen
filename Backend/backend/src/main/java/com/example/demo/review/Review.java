@@ -1,10 +1,5 @@
 package com.example.demo.review;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -13,13 +8,17 @@ import org.hibernate.annotations.NotFoundAction;
 @Table (name = "review")
 public class Review {
 	@Id
+	@Column (name = "id")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private int id;
+
 	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String user_who_posted;
 	
-//	@Column(name = "film_name")
-//	@NotFound(action = NotFoundAction.EXCEPTION)
-//	private String film_name;
+	@Column(name = "film_name")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private String film_name;
 	
 	//the users review in string from
 	@Column (name = "review")
@@ -28,7 +27,7 @@ public class Review {
 
 	//the score that the user gave the film
 	
-	/*@Column (name = "score")
+	@Column (name = "score")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private Integer score;
 	
@@ -36,6 +35,7 @@ public class Review {
 	@Column (name = "date")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String datePosted;
+
 	
 	//the username of the user who posted that review
 	
@@ -45,7 +45,11 @@ public class Review {
 	private void setScore(int score) {
 		this.score = score;
 	}
-	*/
+
+
+	public int getId(){
+		return id;
+	}
 	public String getReview() {
 		return review;
 	}
@@ -53,24 +57,29 @@ public class Review {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	/*
+
 	public String getDate() {
 		return datePosted;
 	}
 	public void addDate(String datePosted) {
 		this.datePosted = datePosted;
 	}
-	*/
+
 	public String getuser_who_posted() {
 		return user_who_posted;
 	}
 	public void setUser_who_posted(String user_who_posted) {
 		this.user_who_posted = user_who_posted;
 	}
-//	public String getFilm_name() {
-//		return film_name;
-//	}
-//	public void setFilm_name(String film_name) {
-//		 this.film_name = film_name;
-//	}
+	public String getFilm_name() {
+		return film_name;
+	}
+	public void setFilm_name(String film_name) {
+		 this.film_name = film_name;
+	}
+}
+
+interface ReviewAndName{
+	String getReview();
+	String getuser_who_posted();
 }

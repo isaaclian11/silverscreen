@@ -12,6 +12,6 @@ public interface ReviewRepository extends JpaRepository <Review, Integer> {
 
     @Query(value = "select distinct r.user_who_posted, r.review from review r, friends f " +
             "where r.user_who_posted<>?1 and(f.friend1=?1 or f.friend2=?1)", nativeQuery = true)
-    public List<Review> findReviewByUsername(String username);
+    public List<ReviewAndName> findReviewByUsername(String username);
 
 }
