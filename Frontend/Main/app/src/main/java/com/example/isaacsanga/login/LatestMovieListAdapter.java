@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -65,7 +67,7 @@ public class LatestMovieListAdapter extends BaseAdapter {
         }
         viewHolder.desc.setText(model.get(position).getDesc());
         viewHolder.name.setText(model.get(position).getName());
-        new Connection(viewHolder, position).execute();
+        Picasso.get().load("https://image.tmdb.org/t/p/w500"+model.get(position).poster).into(viewHolder.profile);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,33 +75,6 @@ public class LatestMovieListAdapter extends BaseAdapter {
             }
         });
         return convertView;
-
-    }
-    public class Connection extends AsyncTask<Void, Void, Void>{
-
-        int position;
-        ViewHolder viewHolder;
-        Bitmap bitmap;
-
-        public Connection(ViewHolder viewHolder, int position){
-            this.position = position;
-            this.viewHolder = viewHolder;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                bitmap = BitmapFactory.decodeStream((InputStream)new URL("https://image.tmdb.org/t/p/w500"+model.get(position).poster).getContent());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            viewHolder.profile.setImageBitmap(bitmap);
-        }
 
     }
 

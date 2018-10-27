@@ -12,8 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/MovieTitle"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="106dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="0dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="48dp" />
@@ -38,8 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="102dp"
         android:layout_marginTop="22dp"
+        android:layout_marginEnd="0dp"
         android:text="TextView" />
 
 </RelativeLayout>

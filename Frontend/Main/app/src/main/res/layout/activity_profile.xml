@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/getName"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:textColor="#ffffff"
@@ -30,6 +30,7 @@
         android:src="@drawable/if_user_925901"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/activityFeed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,10 +40,11 @@
         android:id="@+id/activityFeed"
         android:layout_width="match_parent"
         android:layout_height="617dp"
+        android:layout_marginTop="8dp"
         android:background="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfile"
+        app:layout_constraintTop_toBottomOf="@+id/getName"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -51,18 +53,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="8dp"
         android:text="Find Friends"
         app:layout_constraintEnd_toStartOf="@+id/latestMovies"
-        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/getName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/latestMovies"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:text="Latest Movies"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
