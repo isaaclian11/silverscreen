@@ -29,7 +29,7 @@ public class WebSocketServer {
 	}
 	public void onMessage(Session session, String message) throws IOException() {
 		sendMessagetoAPraticularUser(session,echo); //change this to a speciifc person?
-		
+		//create method that will store the messgaes
 	}
 	public void onClose() {
 		chatEndPoints.remove(this);
@@ -38,9 +38,27 @@ public class WebSocketServer {
 		
 	}
 	public void sendMessageToAPractiuclarUser(Session session, String message) {
-		
+		try {
+			session.getBasicRemote().sendText(message);
+		}
+		catch (IOException E){
+			E.printStackTrace();
+		}
 	}
-	public static void broadcast() {
+	public static void broadcast(String message) {
+		throws IOException {
+			chatEndPoints.forEach(endpoint ->){
+				synchronized(endpoint){
+					try {
+						endpoint.session.getBasicRemote().sendText(message);
+					}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		
 		
 	}
 
