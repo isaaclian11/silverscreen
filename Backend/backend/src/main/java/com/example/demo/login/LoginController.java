@@ -1,5 +1,6 @@
 package com.example.demo.login;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.friends.Friend;
 
 
 @RestController
@@ -44,28 +47,18 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, path = "/users111")
 	public jsonResponse checkUserName(@RequestBody String loginInformation)
 	{
-		//System.out.println("==========POST method called");
-		//System.out.println("username = " + loginInformation);
-		
 		String delims = "[\"]";
 		String[] tokens = loginInformation.split(delims);
 
 		String userName = tokens[3];
 		String password = tokens[7];
-		//System.out.println("username = " + userName);
-		//System.out.println("password = " + password);
 		
         logger.info("Entered into Controller Layer");
         List<Login> results = loginsRepository.findAll();
-        logger.info("========Number of Records Fetched:" + results.size());
-        //System.out.println(results.toString()); 
         
         int i = 0; 
         while (i < results.size())
-        {
-        	//System.out.println(results.get(i).getUsername());
-        	//System.out.println(results.get(i).getPassword());
-        	
+        {	
         	String uName = results.get(i).getUsername();
         	String uPass = results.get(i).getPassword();
 
@@ -76,12 +69,11 @@ public class LoginController {
         	{
         		jsonResponse jsonResponse = new jsonResponse(results.get(i), "success");
         		return jsonResponse;
-        		//System.out.println("FOUND = " + found);
         	}
         	
         	i++;
-        	//System.out.println("**************");
         }
+        
         jsonResponse jsonResponse = new jsonResponse("failure");
         return jsonResponse;
 	}
@@ -98,4 +90,22 @@ public class LoginController {
 			return jsonResponse;
 		}
 	}
+	
+    @RequestMapping(method = RequestMethod.POST, path = "/searchFriends")
+    public ArrayList<String> searchForFriends(String search) 
+    {
+        logger.info("Entered into Controller Layer");
+        List<Login> results = loginsRepository.findAll();
+        ArrayList<String> friendResults = new ArrayList<String>();
+        
+        for (int i = 0; i < results.size(); i++)
+        {
+        	if (results.get(i).getUsername().contains(search))
+        	{
+        		friendResults.add(results.get(i).getUsername());
+        	}
+        }
+        
+        return friendResults;
+    }
 }

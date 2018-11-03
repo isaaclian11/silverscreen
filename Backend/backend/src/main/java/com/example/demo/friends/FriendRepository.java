@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @EnableJpaRepositories
 public interface FriendRepository extends JpaRepository <Friend, Integer> 
 {
-
+	
 }

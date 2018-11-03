@@ -1,5 +1,7 @@
 package com.example.demo.friends;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

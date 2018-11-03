@@ -18,7 +18,7 @@ public class WebSocketServer {
 	private Session session;
 	private static Set<WebSocketServer> chatEndPoints = new CopyOnWriteArraySet<>();
 	private static Map<String, String> users = new HashMap();
-	
+	/*
 	@OnOpen
 	public void onOpen(Session session, @PathParam("username") String username) throws IOException() {
 		this.session = session;
@@ -61,5 +61,5 @@ public class WebSocketServer {
 		
 		
 	}
-
+	*/
 }
