@@ -92,15 +92,21 @@ public class LoginController {
 	}
 	
     @RequestMapping(method = RequestMethod.POST, path = "/searchFriends")
-    public ArrayList<String> searchForFriends(String search) 
+    public ArrayList<String> searchForFriends(@RequestBody String search) 
     {
+		String delims = "[\"]";
+		String[] tokens = search.split(delims);
+
+		String userName = tokens[3];
+    	
         logger.info("Entered into Controller Layer");
         List<Login> results = loginsRepository.findAll();
+       
         ArrayList<String> friendResults = new ArrayList<String>();
         
         for (int i = 0; i < results.size(); i++)
         {
-        	if (results.get(i).getUsername().contains(search))
+        	if (results.get(i).getUsername().contains(userName))
         	{
         		friendResults.add(results.get(i).getUsername());
         	}
