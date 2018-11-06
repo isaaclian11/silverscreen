@@ -92,7 +92,7 @@ public class LoginController {
 	}
 	
     @RequestMapping(method = RequestMethod.POST, path = "/searchFriends")
-    public ArrayList<String> searchForFriends(@RequestBody String search) 
+    public ArrayList<String> searchForUser(@RequestBody String search) 
     {
 		String delims = "[\"]";
 		String[] tokens = search.split(delims);
