@@ -1,5 +1,6 @@
 package com.example.demo.friends;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -43,8 +44,6 @@ public class FriendController
         
         return results;
     }
-    
-	
 
 }
 
