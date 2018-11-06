@@ -21,6 +21,7 @@ public class WebSocketServer {
 	
 	@OnOpen
 	public void onOpen(Session session, @PathParam("username") String username) throws IOException() {
+		//pull all of the history from the server
 		this.session = session;
 		chatEndPoints.add(this);
 		users.put(session.getId(), username);
@@ -29,12 +30,13 @@ public class WebSocketServer {
 	}
 	public void onMessage(Session session, String message) throws IOException() {
 		sendMessagetoAPraticularUser(session,echo); //change this to a speciifc person?
-		//create method that will store the messgaes
+		//add this messsage to the file that represents the chat history
 	}
 	public void onClose() {
 		chatEndPoints.remove(this);
 		String message = "user has left the chat";
 		broadcast(message);
+		//upload the file to the server
 		
 	}
 	public void sendMessageToAPractiuclarUser(Session session, String message) {
