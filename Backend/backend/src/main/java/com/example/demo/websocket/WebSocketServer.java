@@ -1,6 +1,8 @@
 package com.example.demo.websocket;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,9 +26,13 @@ public class WebSocketServer {
 	private static Map<Session, String> sessionUserMap = new HashMap();
 	public static Map<String, Session> usernameSessionMap = new HashMap();
 	private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+	protected ArrayList<String> chatHistory = new ArrayList<String>();
 	
 	@OnOpen
 	public void onOpen(Session session, @PathParam("username") String username) throws IOException {
+		//pull messages from the server
+		//iterate through for loop that will add the chat history to the ArrayList of ChatHistory
+		//broadcast messages (so that users can see history?)
 		//*TODO* pull all of the history from the server
 		//adds user to the sessions (one is of users and one is of usernames)
 		logger.info("Entered into Open");
@@ -54,6 +60,7 @@ public class WebSocketServer {
 			broadcast(username + ": " + message);
 			//add the message to the chat history (a text file?)
 		}
+		chatHistory.add(message);
 
 	}
 	
@@ -64,7 +71,14 @@ public class WebSocketServer {
 		usernameSessionMap.remove(username);
 		String message = "user " + username + " has left the chat";
 		broadcast(message);
-		//upload the file to the server
+		//creates printwriter to add new messages from chat to chat history
+		PrintWriter writer = new PrintWriter("chatHistory.txt");
+		//adds all new chats to the file of chatHistory
+		for (int i = 0; i < chatHistory.size(); i++) {
+			writer.print(chatHistory.get(i));
+		}
+		writer.close();
+		//*TODO* upload the file to the server
 		
 	}
 	public void onError (Session session, Throwable throwable) {
