@@ -1,6 +1,7 @@
 package com.example.isaacsanga.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +55,7 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if(convertView==null){
             holder = new ViewHolder();
@@ -60,8 +63,7 @@ public class ListViewAdapter extends BaseAdapter {
 
             holder.name = convertView.findViewById(R.id.Name);
             holder.desc = convertView.findViewById(R.id.getStatus);
-            holder.profile = convertView.findViewById(R.id.userProfile);
-
+            holder.profile = convertView.findViewById(R.id.poster);
             convertView.setTag(holder);
         }
         else{
@@ -70,11 +72,15 @@ public class ListViewAdapter extends BaseAdapter {
 
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDesc());
-
+        Picasso.get().load("https://image.tmdb.org/t/p/w500"+list.get(position).getPoster()).into(holder.profile);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, StatusReply.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("friend", list.get(position).getName());
+                intent.putExtra("me", list.get(position).getMe());
+                mContext.startActivity(intent);
             }
         });
 

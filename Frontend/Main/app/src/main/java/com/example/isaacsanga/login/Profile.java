@@ -40,10 +40,11 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     TextView textView;
     ListView listView;
     Bitmap bitmap;
-    String URL = "http://10.36.51.115:8080/review/friendsReview";
+    String URL = "http://10.26.0.220:8080/review/friendsReview";
     Button findFriends, latestMovies;
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String> descriptions = new ArrayList<>();
+    ArrayList<String> movieID = new ArrayList<>();
     ArrayList<Model> arrayList = new ArrayList<>();
     ListViewAdapter listViewAdapter;
     @Override
@@ -75,9 +76,10 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                         JSONObject reviews = jsonArray.getJSONObject(i);
                         names.add(reviews.getString("user_who_posted"));
                         descriptions.add(reviews.getString("review"));
+                        movieID.add(reviews.getString("posterID"));
                     }
                     for(int i=0; i<names.size(); i++){
-                        Model model = new Model(names.get(i), descriptions.get(i), "");
+                        Model model = new Model(names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"));
                         arrayList.add(model);
                     }
 
@@ -114,6 +116,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LatestMovies.class);
+                intent.putExtra("username", getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });

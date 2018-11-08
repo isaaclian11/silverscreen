@@ -4,6 +4,7 @@ public class Model {
     String name;
     String desc;
     String poster;
+    String me;
 
     public String getName() {
         return name;
@@ -15,9 +16,12 @@ public class Model {
 
     public String getPoster(){return poster;}
 
-    public Model(String name, String desc, String poster) {
+    public String getMe(){return me;}
+
+    public Model(String name, String desc, String poster, String me) {
         this.name = name;
         this.desc = desc;
         this.poster = poster;
+        this.me = me;
     }
 }
