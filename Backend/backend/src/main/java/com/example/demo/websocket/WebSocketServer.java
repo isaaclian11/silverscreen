@@ -44,6 +44,7 @@ public class WebSocketServer {
 		broadcast(message);
 	}
 	
+	@OnMessage
 	public void onMessage(Session session, String message) throws IOException {
 		logger.info("Entered into message: Got Message: " + message);
 		//gets the username and checks if there is an @ in the front (this means that it is only suppose to go to one user)
@@ -52,6 +53,8 @@ public class WebSocketServer {
 			
 			//this will figure out where the message needs to be sent and then send the message to the user who sent it and the one who is the intended recipent)
 			String destUsername = message.split(" ")[0].substring(1);
+			int x = message.indexOf(" ");
+			message = message.substring(x, message.length());
 			sendMessageToAPractiuclarUser(destUsername, "[DM] " + username + ": " + message);
 			sendMessageToAPractiuclarUser(username, "[DM] " + username + ": " + message);
 			//add the message to the chathistory (a text file?)
@@ -61,9 +64,9 @@ public class WebSocketServer {
 			//add the message to the chat history (a text file?)
 		}
 		chatHistory.add(message);
-
 	}
 	
+	@OnClose
 	public void onClose(Session session) throws IOException {
 		logger.info("Entered into close");
 		String username = sessionUserMap.get(session);
@@ -81,6 +84,7 @@ public class WebSocketServer {
 		//*TODO* upload the file to the server
 		
 	}
+	@OnError
 	public void onError (Session session, Throwable throwable) {
 		logger.info("Entered into error");
 	}
