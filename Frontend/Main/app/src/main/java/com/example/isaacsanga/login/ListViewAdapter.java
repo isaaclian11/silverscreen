@@ -74,7 +74,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDesc());
-        holder.score.setText(list.get(position).getScore());
+        holder.score.setText("Score: " + Integer.toString(list.get(position).getScore()));
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+list.get(position).getPoster()).into(holder.profile);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +87,8 @@ public class ListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, StatusReply.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("friend", list.get(position).getName());
-                intent.putExtra("me", list.get(position).getMe());
+                intent.putExtra("id", list.get(position).getId());
+                intent.putExtra("user", list.get(position).getMe());
                 mContext.startActivity(intent);
             }
         });

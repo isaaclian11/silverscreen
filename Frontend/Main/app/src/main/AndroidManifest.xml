@@ -25,7 +25,8 @@
         <activity android:name=".Profile" />
         <activity android:name=".LatestMovies" />
         <activity android:name=".StatusReply" />
-        <activity android:name=".LatestMovieInfo"></activity>
+        <activity android:name=".LatestMovieInfo" />
+        <activity android:name=".CurrentMovie"></activity>
     </application>
 
 </manifest>

@@ -42,6 +42,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     Bitmap bitmap;
     String URL = "http://10.36.49.189:8080/review/friendsReview";
     Button findFriends, latestMovies;
+    ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String> descriptions = new ArrayList<>();
     ArrayList<String> movieID = new ArrayList<>();
@@ -75,13 +76,14 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                     JSONArray jsonArray = response.getJSONArray("response");
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject reviews = jsonArray.getJSONObject(i);
+                        id.add(reviews.getInt("id"));
                         names.add(reviews.getString("user_who_posted"));
                         descriptions.add(reviews.getString("review"));
                         movieID.add(reviews.getString("posterID"));
                         movieScore.add(reviews.getInt("score"));
                     }
                     for(int i=0; i<names.size(); i++){
-                        Model model = new Model(names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));
+                        Model model = new Model(id.get(i), names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));
                         arrayList.add(model);
                     }
 

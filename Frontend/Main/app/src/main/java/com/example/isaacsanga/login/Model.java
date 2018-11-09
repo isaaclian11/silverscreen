@@ -1,22 +1,21 @@
 package com.example.isaacsanga.login;
 
 public class Model {
+    int id;
     String name;
     String desc;
     String poster;
     String me;
+    int score;
 
+    public int getId(){
+        return id;
+    }
 
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    boolean like;
-    int score;
 
     public String getName() {
         return name;
@@ -34,11 +33,13 @@ public class Model {
         return me;
     }
 
-    public Model(String name, String desc, String poster, String me, int score) {
+    public Model(int id, String name, String desc, String poster, String me, int score) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.poster = poster;
         this.me = me;
+        this.score = score;
     }
 
 }
