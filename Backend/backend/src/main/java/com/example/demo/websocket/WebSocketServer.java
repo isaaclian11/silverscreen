@@ -17,23 +17,27 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import antlr.collections.List;
 
 @ServerEndpoint("/websocket/{username}")
 @Component
 public class WebSocketServer {
+	@Autowired
+	ChatRepository chatRepository;
 	private Session session;
 	private static Map<Session, String> sessionUserMap = new HashMap();
 	public static Map<String, Session> usernameSessionMap = new HashMap();
 	private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
 	protected ArrayList<String> chatHistory = new ArrayList<String>();
+	private String sender;
+	private String recipient;
 	
 	@OnOpen
 	public void onOpen(Session session, @PathParam("username") String username) throws IOException {
-		//pull messages from the server
-		//iterate through for loop that will add the chat history to the ArrayList of ChatHistory
-		//broadcast messages (so that users can see history?)
-		//*TODO* pull all of the history from the server
+		//keeps track of the name of user (this is important when pushing the message to the server)
 		//adds user to the sessions (one is of users and one is of usernames)
 		logger.info("Entered into Open");
 		sessionUserMap.put(session, username);
@@ -57,32 +61,26 @@ public class WebSocketServer {
 			message = message.substring(x, message.length());
 			sendMessageToAPractiuclarUser(destUsername, "[DM] " + username + ": " + message);
 			sendMessageToAPractiuclarUser(username, "[DM] " + username + ": " + message);
-			//add the message to the chathistory (a text file?)
+			recipient = destUsername;
 		}
 		else {
+			//since this message is not directed at only one person, the message can be broadcast to everyone
 			broadcast(username + ": " + message);
-			//add the message to the chat history (a text file?)
+			recipient = "everyone";
 		}
-		chatHistory.add(message);
+		
 	}
 	
 	@OnClose
 	public void onClose(Session session) throws IOException {
 		logger.info("Entered into close");
+		//finds the user and removes them from the session
 		String username = sessionUserMap.get(session);
 		sessionUserMap.remove(session);
 		usernameSessionMap.remove(username);
+		//tells the chat the user left the chatroom
 		String message = "user " + username + " has left the chat";
 		broadcast(message);
-		//creates printwriter to add new messages from chat to chat history
-		PrintWriter writer = new PrintWriter("chatHistory.txt");
-		//adds all new chats to the file of chatHistory
-		for (int i = 0; i < chatHistory.size(); i++) {
-			writer.print(chatHistory.get(i));
-		}
-		writer.close();
-		//*TODO* upload the file to the server
-		
 	}
 	@OnError
 	public void onError (Session session, Throwable throwable) {
@@ -91,9 +89,11 @@ public class WebSocketServer {
 	
 	public void sendMessageToAPractiuclarUser(String username, String message) {
 		try {
+			//attempts to send the String message to the user that has been passed through
 			usernameSessionMap.get(username).getBasicRemote().sendText(message);
 		}
 		catch (IOException E){
+			//if for some reason it cannot, it will print an error message to the user.
 			logger.info("Exception " +E.getMessage().toString());
 			E.printStackTrace();
 		}
