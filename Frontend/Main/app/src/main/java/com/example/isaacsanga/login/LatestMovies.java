@@ -42,7 +42,7 @@ public class LatestMovies extends AppCompatActivity {
                         String movieTitle = jsonObject.getString("title");
                         String summary = jsonObject.getString("overview");
                         String posterUrl = jsonObject.getString("poster_path");
-                        movies.add(new Model(movieTitle, summary, posterUrl, getIntent().getStringExtra("username")));
+                        movies.add(new Model(movieTitle, summary, posterUrl, getIntent().getStringExtra("username"), 0));
                     }
                     latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
                     listView.setAdapter(latestMovieListAdapter);
