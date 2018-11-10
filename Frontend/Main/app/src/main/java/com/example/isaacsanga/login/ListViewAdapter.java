@@ -1,99 +1,72 @@
 package com.example.isaacsanga.login;
 
 import android.content.Context;
-import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyViewHolder>{
+    private Context mContext;
+    private List<Model> models;
 
-    Context mContext;
-    List<Model> list;
-    ArrayList<Model> arrayList;
-    LayoutInflater inflater;
 
-    public ListViewAdapter(Context mContext, List<Model> list) {
+    public ListViewAdapter(Context mContext, List<Model> models) {
         this.mContext = mContext;
-        this.list = list;
-        inflater = LayoutInflater.from(mContext);
-        this.arrayList = new ArrayList<Model>();
-        arrayList.addAll(list);
-
+        this.models = models;
     }
 
-    private class ViewHolder{
-        TextView name, desc, score;
-        ImageView profile;
-        Button reply;
-    }
-
-
-
+    @NonNull
     @Override
-    public int getCount() {
-        return list.size();
+    public ListViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View view;
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        view = layoutInflater.inflate(R.layout.updated_feed_row, viewGroup, false);
+
+        return new ListViewAdapter.MyViewHolder(view);
     }
 
     @Override
-    public Object getItem(int position) {
-        return list.get(position);
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        Picasso.get().load("https://image.tmdb.org/t/p/w500"+models.get(i).getPoster()).into(myViewHolder.moviePoster);
+        myViewHolder.getReply.setText(models.get(i).getDesc());
+        myViewHolder.Name.setText(models.get(i).getName());
+        myViewHolder.score.setText("Score: " + Integer.toString(models.get(i).getScore()));
     }
 
+
     @Override
-    public long getItemId(int position) {
-        return position;
+    public int getItemCount() {
+        return models.size();
     }
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if(convertView==null){
-            holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.row, null);
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-            holder.name = convertView.findViewById(R.id.Name);
-            holder.desc = convertView.findViewById(R.id.getReply);
-            holder.profile = convertView.findViewById(R.id.poster);
-            holder.reply = convertView.findViewById(R.id.replyBtn);
-            holder.score = convertView.findViewById(R.id.score);
-            convertView.setTag(holder);
+        TextView getReply, Name, score;
+        ImageView moviePoster;
+
+        public MyViewHolder(View itemView){
+            super(itemView);
+
+            moviePoster = itemView.findViewById(R.id.feedPoster);
+            getReply = itemView.findViewById(R.id.feedReview);
+            Name = itemView.findViewById(R.id.feedName);
+            score = itemView.findViewById(R.id.feedScore);
         }
-        else{
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        holder.name.setText(list.get(position).getName());
-        holder.desc.setText(list.get(position).getDesc());
-        holder.score.setText("Score: " + Integer.toString(list.get(position).getScore()));
-        Picasso.get().load("https://image.tmdb.org/t/p/w500"+list.get(position).getPoster()).into(holder.profile);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        holder.reply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, StatusReply.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("id", list.get(position).getId());
-                intent.putExtra("user", list.get(position).getMe());
-                mContext.startActivity(intent);
-            }
-        });
-
-
-        return convertView;
     }
+
+
+
+
+
+
 }

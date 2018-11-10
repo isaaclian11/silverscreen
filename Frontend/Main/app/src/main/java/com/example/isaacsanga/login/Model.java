@@ -7,6 +7,7 @@ public class Model {
     String poster;
     String me;
     int score;
+    String title;
 
     public int getId(){
         return id;
@@ -33,13 +34,22 @@ public class Model {
         return me;
     }
 
-    public Model(int id, String name, String desc, String poster, String me, int score) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Model(int id, String title, String name, String desc, String poster, String me, int score) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.poster = poster;
         this.me = me;
         this.score = score;
+        this.title = title;
     }
 
 }

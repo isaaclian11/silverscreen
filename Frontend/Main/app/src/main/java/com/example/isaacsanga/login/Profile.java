@@ -7,6 +7,9 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +41,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     private static final int IMAGE_RESULT = 1;
     ImageView imageView;
     TextView textView;
-    ListView listView;
+    RecyclerView listView;
     Bitmap bitmap;
     String URL = "http://10.30.186.82:8080/review/friendsReview";
     Button findFriends, latestMovies;
@@ -48,6 +51,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     ArrayList<String> movieID = new ArrayList<>();
     ArrayList<Integer> movieScore = new ArrayList<>();
     ArrayList<Model> arrayList = new ArrayList<>();
+    ArrayList<String> movieTitle = new ArrayList<>();
     ListViewAdapter listViewAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +85,12 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
                         descriptions.add(reviews.getString("review"));
                         movieID.add(reviews.getString("posterID"));
                         movieScore.add(reviews.getInt("score"));
+                        movieTitle.add(reviews.getString("movieTitle"));
                     }
                     for(int i=0; i<names.size(); i++){
-                        Model model = new Model(id.get(i), names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));
+                        Model model = new Model(id.get(i), movieTitle.get(i), names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));
                         arrayList.add(model);
                     }
-
                     listViewAdapter = new ListViewAdapter(getApplicationContext(), arrayList);
                     listView.setAdapter(listViewAdapter);
 
@@ -102,6 +106,10 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonRequest);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

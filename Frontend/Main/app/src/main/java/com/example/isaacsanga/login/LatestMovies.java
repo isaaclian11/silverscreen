@@ -47,8 +47,8 @@ public class LatestMovies extends AppCompatActivity {
                         String posterUrl = jsonObject.getString("poster_path");
                         movies.add(new MovieModel(movieID, movieTitle, posterUrl, getIntent().getStringExtra("username")));
                     }
-
-
+                    latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
+                    listView.setAdapter(latestMovieListAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -63,7 +63,6 @@ public class LatestMovies extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
         listView.setLayoutManager(new GridLayoutManager(this, 3));
-        latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
-        listView.setAdapter(latestMovieListAdapter);
+
    }
 }
