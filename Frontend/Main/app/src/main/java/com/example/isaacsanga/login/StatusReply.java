@@ -17,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class StatusReply extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
-    private String URL = "http://10.36.49.189:8080/reviews/postReply";
+    private String URL = "http://10.30.186.82:8080/reviews/postReply";
     int movieScore = -1;
     TextView score;
 

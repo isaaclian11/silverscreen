@@ -20,30 +20,7 @@
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="48dp" />
 
-    <ImageView
-        android:id="@+id/poster"
-        android:layout_width="97dp"
-        android:layout_height="137dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="-124dp"
-        android:layout_toStartOf="@+id/getReply"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="33dp" />
 
-    <TextView
-        android:id="@+id/MovieTitle"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="0dp"
-        android:text="TextView" />
+
 
 </RelativeLayout>

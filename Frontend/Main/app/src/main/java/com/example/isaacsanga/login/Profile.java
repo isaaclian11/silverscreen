@@ -40,7 +40,7 @@ public class Profile extends AppCompatActivity implements PopupMenu.OnMenuItemCl
     TextView textView;
     ListView listView;
     Bitmap bitmap;
-    String URL = "http://10.36.49.189:8080/review/friendsReview";
+    String URL = "http://10.30.186.82:8080/review/friendsReview";
     Button findFriends, latestMovies;
     ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();

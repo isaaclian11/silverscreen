@@ -2,6 +2,9 @@ package com.example.isaacsanga.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -23,8 +26,8 @@ public class LatestMovies extends AppCompatActivity {
     private final String APIKey = "cf48d0b2aede68f37177a9c799b06a45";
     String getLatest = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
     LatestMovieListAdapter latestMovieListAdapter;
-    ListView listView;
-    ArrayList<Model> movies = new ArrayList<>();
+    RecyclerView listView;
+    ArrayList<MovieModel> movies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +42,12 @@ public class LatestMovies extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("results");
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        int movieID = jsonObject.getInt("id");
                         String movieTitle = jsonObject.getString("title");
-                        String summary = jsonObject.getString("overview");
                         String posterUrl = jsonObject.getString("poster_path");
-                        movies.add(new Model(0, movieTitle, summary, posterUrl, getIntent().getStringExtra("username"), 0));
+                        movies.add(new MovieModel(movieID, movieTitle, posterUrl, getIntent().getStringExtra("username")));
                     }
-                    latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
-                    listView.setAdapter(latestMovieListAdapter);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -60,5 +62,8 @@ public class LatestMovies extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
+        listView.setLayoutManager(new GridLayoutManager(this, 3));
+        latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
+        listView.setAdapter(latestMovieListAdapter);
    }
 }
