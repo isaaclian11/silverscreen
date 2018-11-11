@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,14 +52,14 @@ public class Profile extends AppCompatActivity {
     ArrayList<Model> arrayList = new ArrayList<>();
     ArrayList<String> movieTitle = new ArrayList<>();
     ListViewAdapter listViewAdapter;
+    android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        String firstname = getIntent().getStringExtra("firstname");
-        String lastname = getIntent().getStringExtra("lastname");
+        toolbar = findViewById(R.id.menubar);
+        setSupportActionBar(toolbar);
         listView = findViewById(R.id.activityFeed);
         JSONObject jsonObject = new JSONObject();
         try {

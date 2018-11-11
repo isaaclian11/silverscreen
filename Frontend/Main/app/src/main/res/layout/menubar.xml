@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="38dp"
+    android:id="@+id/menubar">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:src="@drawable/home"
+        android:layout_marginRight="20dp"
+        />
+
+    <ImageView
+        android:id="@+id/getProfile"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/profile"/>
+
+
+    <ImageView
+        android:id="@+id/findFriends"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/friends"
+        android:text="Find Friends"
+        android:layout_marginStart="60dp"/>
+
+    <ImageView
+        android:id="@+id/latestMovies"
+        android:src="@drawable/movies"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Latest Movies"
+        android:layout_marginStart="60dp"/>
+
+</LinearLayout>
+</android.support.v7.widget.Toolbar>

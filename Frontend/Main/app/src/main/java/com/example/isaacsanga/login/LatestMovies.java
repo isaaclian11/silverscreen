@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -33,6 +34,8 @@ public class LatestMovies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_latest_movies);
+        Toolbar toolbar = findViewById(R.id.menubar);
+        setSupportActionBar(toolbar);
 
         listView = findViewById(R.id.movieList);
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getLatest + APIKey, null, new Response.Listener<JSONObject>() {
