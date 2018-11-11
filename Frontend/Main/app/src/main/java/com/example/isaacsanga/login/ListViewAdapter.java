@@ -37,6 +37,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        myViewHolder.movieTitle.setText(models.get(i).getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+models.get(i).getPoster()).into(myViewHolder.moviePoster);
         myViewHolder.getReply.setText(models.get(i).getDesc());
         myViewHolder.Name.setText(models.get(i).getName());
@@ -51,12 +52,12 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView getReply, Name, score;
+        TextView movieTitle, getReply, Name, score;
         ImageView moviePoster;
 
         public MyViewHolder(View itemView){
             super(itemView);
-
+            movieTitle = itemView.findViewById(R.id.feedTitle);
             moviePoster = itemView.findViewById(R.id.feedPoster);
             getReply = itemView.findViewById(R.id.feedReview);
             Name = itemView.findViewById(R.id.feedName);
