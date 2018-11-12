@@ -8,20 +8,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
@@ -55,7 +50,7 @@ public class Register extends AppCompatActivity {
     }
     //Converts the login info to Json format and sends it to the server
     private void register() throws JSONException {
-        String url = "http://10.30.186.82:8080/login/add";
+        String url = "http://10.36.48.55:8080/login/add";
         final String email = registerEmail.getText().toString();
         final String password = registerPassword.getText().toString();
         final String fName = firstname.getText().toString();
@@ -77,7 +72,7 @@ public class Register extends AppCompatActivity {
                         if(response.get("result").equals("success")){
                             //response returns whether the registration is successful or not
                             Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), Profile.class);
+                            Intent intent = new Intent(getApplicationContext(), ActivityFeed.class);
                             //passes on the first and last name to the next activity
                             intent.putExtra("firstname", fName);//
                             intent.putExtra("lastname", lName);
