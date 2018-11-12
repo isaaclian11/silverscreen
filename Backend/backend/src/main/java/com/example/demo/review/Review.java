@@ -120,6 +120,7 @@ public class Review {
 }
 
 interface ReviewAndName{
+	String getMovieTitle();
 	String getId();
 	String getReview();
 	String getuser_who_posted();

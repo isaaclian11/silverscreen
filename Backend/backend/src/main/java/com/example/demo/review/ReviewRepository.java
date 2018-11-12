@@ -10,7 +10,7 @@ import java.util.List;
 @EnableJpaRepositories
 public interface ReviewRepository extends JpaRepository <Review, Integer> {
 
-    @Query(value = "select distinct r.movieID, r.id, r.score, r.user_who_posted, r.review, r.posterID from review r, friends f " +
+    @Query(value = "select distinct r.movieTitle, r.movieID, r.id, r.score, r.user_who_posted, r.review, r.posterID from review r, friends f " +
             "where (f.friend1=?1 or f.friend2=?1) and r.parentID is NULL", nativeQuery = true)
     public List<ReviewAndName> findReviewByUsername(String username);
 
