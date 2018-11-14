@@ -23,5 +23,23 @@ public class ChatController {
       //returns the list of chat History
       return chatRepository.findAll();
 	}
+	@RequestMapping(method = RequestMethod.POST, path = "/chat/add")
+	public jsonResponse saveChat(@RequestBody Chat chat) {
+		logger.info("Entered into Controller layer");
+		long numberofMessages = chatRepository.count();
+		//saves the message
+		chatRepository.save(chat);
+		//checks to see if the object was successfully added
+		if (chatRepository.count() == (numberofMessages + 1)) {
+			//returns to the user a success message (since the message has been saved)
+			jsonResponse jsonResponse = new jsonResponse (chat,"Chat successfully added");
+			return jsonResponse;
+		}
+		else {
+			//since it did not save successfully, it will send a failure message
+			jsonResponse x = new jsonResponse (chat, "failure");
+			return x;
+		}
+	}
 
 }
