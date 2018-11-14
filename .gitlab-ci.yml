@@ -14,8 +14,7 @@ maven-build:
   tags:
     - shell
   script:
-    - cd Backend
-	- cd backend
+    - cd Backend/backend
     - mvn package -B
   
 # artifacts are created when job executes successfully, and can be manually downloaded from GitLab GUI.
@@ -25,8 +24,7 @@ maven-test:
   tags:
     - shell
   script:
-    - cd Backend
-	- cd backend
+    - cd Backend/backend
     - mvn test
   artifacts:
     paths:
@@ -39,8 +37,7 @@ autoDeploy:
   tags:
    - shell
   script:
-    - cd Backend
-	- cd backend
+    - cd Backend/backend
     - mvn package
     - sudo mv target/*.jar /target/web-demo.jar 
     - sudo systemctl stop systemd-web-demo
@@ -60,8 +57,7 @@ android-build:
   tags:
    - android_tag1
   script:
-    - cd Frontend
-	- cd Main
+    - cd Frontend/Main
     - ./gradlew assemble
   artifacts:
     paths:
@@ -77,8 +73,7 @@ unitTests:
   tags:
    - android_tag1
   script:
-    - cd Frontend
-	- cd Main
+    - cd Frontend/Main
     - ./gradlew test
 
 
