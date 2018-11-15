@@ -15,6 +15,7 @@
         android:layout_gravity="center"
         android:src="@drawable/home"
         android:layout_marginRight="20dp"
+        android:id="@+id/homeFeed"
         />
 
     <ImageView

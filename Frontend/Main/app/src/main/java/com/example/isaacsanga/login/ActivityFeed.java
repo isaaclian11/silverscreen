@@ -42,8 +42,8 @@ public class ActivityFeed extends AppCompatActivity {
     private static final int IMAGE_RESULT = 1;
     RecyclerView listView;
     Bitmap bitmap;
-    String URL = "http://10.36.48.55:8080/review/friendsReview";
-    ImageView findFriends, latestMovies;
+    String URL = "http://10.26.36.144:8080/review/friendsReview";
+    ImageView findFriends, latestMovies, home, profile;
     ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String> descriptions = new ArrayList<>();
@@ -107,6 +107,9 @@ public class ActivityFeed extends AppCompatActivity {
 
 
         findFriends = findViewById(R.id.findFriends);
+        latestMovies = findViewById(R.id.latestMovies);
+        home = findViewById(R.id.homeFeed);
+        profile = findViewById(R.id.getProfile);
 
         findFriends.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,12 +118,24 @@ public class ActivityFeed extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        latestMovies = findViewById(R.id.latestMovies);
 
         latestMovies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LatestMovies.class);
+                startActivity(intent);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
             }
         });

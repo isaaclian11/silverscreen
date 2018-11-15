@@ -28,7 +28,8 @@
         <activity android:name=".StatusReply" />
         <activity android:name=".CurrentMovie" />
         <activity android:name=".Friends" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".Chat"></activity>
     </application>
 
 </manifest>
