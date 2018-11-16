@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".CurrentUserInfo"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
+        <activity android:name=".ActivityFeed" />
+        <activity android:name=".LatestMovies" />
+        <activity android:name=".StatusReply" />
+        <activity android:name=".CurrentMovie" />
+        <activity android:name=".Friends" />
         <activity android:name=".Profile" />
-        <activity android:name=".LatestMovies"></activity>
+        <activity android:name=".Chat"></activity>
     </application>
 
 </manifest>

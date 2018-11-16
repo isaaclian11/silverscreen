@@ -7,6 +7,8 @@ import org.hibernate.annotations.NotFoundAction;
 @Entity
 @Table (name = "review")
 public class Review {
+
+
 	@Id
 	@Column (name = "id")
 	@NotFound(action = NotFoundAction.EXCEPTION)
@@ -16,9 +18,9 @@ public class Review {
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String user_who_posted;
 	
-	@Column(name = "film_name")
+	@Column(name = "movieTitle")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String film_name;
+	private String movieTitle;
 	
 	//the users review in string from
 	@Column (name = "review")
@@ -29,17 +31,47 @@ public class Review {
 	
 	@Column (name = "score")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private Integer score;
+	private int score;
 	
 	//the date that the user posted the review
 	@Column (name = "date")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String datePosted;
+	private String date;
 
+	@Column (name = "movieID")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private int movieID;
+
+	public int getParentID() {
+		return parentID;
+	}
+
+	public void setParentID(int parentID) {
+		this.parentID = parentID;
+	}
+
+	@Column (name = "parentID")
+	@NotFound(action = NotFoundAction.EXCEPTION)
+	private int parentID;
+
+	public String getPosterID() {
+		return posterID;
+	}
+
+	public void setPosterID(String posterID) {
+		this.posterID = posterID;
+	}
+
+	@Column (name = "posterID")
+	@NotFound (action = NotFoundAction.EXCEPTION)
+	private String posterID;
 	
 	//the username of the user who posted that review
+	public void setId(int id) {
+		this.id = id;
+	}
 	
-	public Integer returnScore() {
+	public int getScore() {
 		return score;
 	}
 	private void setScore(int score) {
@@ -59,10 +91,10 @@ public class Review {
 	}
 
 	public String getDate() {
-		return datePosted;
+		return date;
 	}
-	public void addDate(String datePosted) {
-		this.datePosted = datePosted;
+	public void addDate(String date) {
+		this.date = date;
 	}
 
 	public String getuser_who_posted() {
@@ -71,15 +103,43 @@ public class Review {
 	public void setUser_who_posted(String user_who_posted) {
 		this.user_who_posted = user_who_posted;
 	}
-	public String getFilm_name() {
-		return film_name;
+	public String getmovieTitle() {
+		return movieTitle;
 	}
-	public void setFilm_name(String film_name) {
-		 this.film_name = film_name;
+	public void setmovieTitle(String movieTitle) {
+		 this.movieTitle = movieTitle;
 	}
+	public int getMovieID() {
+		return movieID;
+	}
+
+	public void setMovieID(int movieID) {
+		this.movieID = movieID;
+	}
+
 }
 
 interface ReviewAndName{
+	String getMovieTitle();
+	String getId();
+	String getReview();
+	String getuser_who_posted();
+	String getposterID();
+	String getScore();
+	String getMovieID();
+}
+
+interface ReviewReplies{
 	String getReview();
 	String getuser_who_posted();
 }
+
+interface postReview{
+	String getuser_who_posted();
+	String getReview();
+	int getScore();
+	int getParentID();
+	int getMovieID();
+}
+
+

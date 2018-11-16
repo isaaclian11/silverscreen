@@ -1,39 +1,29 @@
 package com.example.isaacsanga.login;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+public class Login extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    final String url = "http://10.36.51.115:8080/users111";
+    final String url = "http://10.26.36.144:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,15 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (response.get("result").equals("success")) {
                         //response returns the first and last name of the user
-                        String firstname = response.getString("firstname");
-                        String lastname = response.getString("lastname");
                         Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(getApplicationContext(), Profile.class);
-                        //passes on the first and last name to the next Activity
-                        loginIntent.putExtra("firstname", firstname);
-                        loginIntent.putExtra("lastname", lastname);
-                        loginIntent.putExtra("username", email);
+                        Intent loginIntent = new Intent(getApplicationContext(), ActivityFeed.class);
                         startActivity(loginIntent);
+                        CurrentUserInfo currentUserInfo = (CurrentUserInfo) getApplicationContext();
+                        currentUserInfo.setUsername(email);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
                     }

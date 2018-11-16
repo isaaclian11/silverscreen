@@ -1,81 +1,64 @@
 package com.example.isaacsanga.login;
 
+
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+public class LatestMovieListAdapter extends RecyclerView.Adapter<LatestMovieListAdapter.MyViewHolder>{
+    private Context mContext;
+    private List<MovieModel> models;
 
-public class LatestMovieListAdapter extends BaseAdapter {
-    Context context;
-    List<Model> model;
-    LayoutInflater layoutInflater;
 
-    public LatestMovieListAdapter(Context context, List<Model> list){
-        this.context = context;
-        layoutInflater = LayoutInflater.from(context);
-        this.model = list;
+    public LatestMovieListAdapter(Context mContext, List<MovieModel> models) {
+        this.mContext = mContext;
+        this.models = models;
     }
+
+    @NonNull
     @Override
-    public int getCount() {
-        return model.size();
-    }
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-    @Override
-    public Object getItem(int position) {
-        return model.get(position);
-    }
+        View view;
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        view = layoutInflater.inflate(R.layout.updatedmovierows, viewGroup, false);
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-    private class ViewHolder{
-        TextView name, desc;
-        ImageView profile;
+        return new MyViewHolder(view);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-        if(convertView==null){
-            convertView = layoutInflater.inflate(R.layout.movierows, null);
-            viewHolder = new ViewHolder();
-            viewHolder.desc = convertView.findViewById(R.id.movieSummary);
-            viewHolder.name = convertView.findViewById(R.id.MovieTitle);
-            viewHolder.profile = convertView.findViewById(R.id.poster);
-            convertView.setTag(viewHolder);
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        myViewHolder.movieTitle.setText(models.get(i).getMovieTitle());
+        Picasso.get().load("https://image.tmdb.org/t/p/w500"+models.get(i).getMoviePoster()).into(myViewHolder.moviePoster);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return models.size();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        TextView movieTitle;
+        ImageView moviePoster;
+
+        public MyViewHolder(View itemView){
+            super(itemView);
+
+            movieTitle = itemView.findViewById(R.id.MovieTitle);
+            moviePoster = itemView.findViewById(R.id.poster);
+
+
         }
-        else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-        viewHolder.desc.setText(model.get(position).getDesc());
-        viewHolder.name.setText(model.get(position).getName());
-        Picasso.get().load("https://image.tmdb.org/t/p/w500"+model.get(position).poster).into(viewHolder.profile);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        return convertView;
-
     }
-
 }
