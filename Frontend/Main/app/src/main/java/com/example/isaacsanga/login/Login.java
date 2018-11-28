@@ -1,6 +1,7 @@
 package com.example.isaacsanga.login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ public class Login extends AppCompatActivity {
     final String url = "http://10.26.36.144:8080/users111";
 
     EditText getEmail, getPassword;
-    Button login, registerBtn;
+    Button login, registerBtn, findBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class Login extends AppCompatActivity {
         getPassword = (EditText) findViewById(R.id.getPassword);
         login = (Button) findViewById(R.id.login);
         registerBtn = (Button) findViewById(R.id.registerBtn);
+        findBtn = (Button) findViewById(R.id.findBtn);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +52,12 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
-        
+        findBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                openMap();
+            }
+        });
     }
 
     //It converts the username and password into Json format and sends it to the server
@@ -86,6 +93,21 @@ public class Login extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    private void openMap(){
+        // Create a Uri from an intent string. Use the result to create an Intent.
+        //Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?z=10&q=movie+theaters");
+
+        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        // Make the Intent explicit by setting the Google Maps package
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        // Attempt to start an activity that can handle the Intent
+        if(mapIntent.resolveActivity(getPackageManager()) != null)
+            startActivity(mapIntent);
     }
 
 
