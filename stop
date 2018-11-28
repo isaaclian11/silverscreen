@@ -1,0 +1,778 @@
+[33mcommit 2be008b9ddc32d83efedf5eabd98fb0014ccce3b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Nov 7 16:27:35 2018 -0600
+
+    Working map in separate app
+
+[33mcommit a2944528ac6a970431efd8dab3147d041db8efe3[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Nov 7 13:07:29 2018 -0600
+
+    Websockets are properly working for both DM's and for messages to everyone. Still need to get the chat history to be pushed to the server when a person leaves
+
+[33mcommit e9daf01a422a945259ba83df4d5ed378d1c72f4e[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Nov 7 03:59:54 2018 -0600
+
+    continued to work on Chat on backend
+
+[33mcommit 11e57c18a8e07de8f1acbb2b43f71731b9418570[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Nov 6 00:28:07 2018 -0600
+
+    Updated Spring. Note that it does not currently work yet. There is some information about it on Piazza, but I'm still working on it.
+
+[33mcommit cf9debf25eba3db457835bfb2fdc5590d3e3fbe9[m
+Merge: 19cbb11 dc82d81
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Nov 6 00:25:52 2018 -0600
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit dc82d8141653d8bd213de8c0bb25f3ee765a9352[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Mon Nov 5 21:07:48 2018 -0600
+
+    post review still doesn't work
+
+[33mcommit a479402e503bda1b2353f1cb39f4c836a896be9f[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Mon Nov 5 20:42:12 2018 -0600
+
+    changed method name of searchForFriends to searchForUser
+
+[33mcommit 19cbb112accfa5fbb046edbc9f0d6e0dfa68b6eb[m
+Merge: a5fecbf d84a7cb
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Mon Nov 5 19:54:30 2018 -0600
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit a5fecbf348ce7bbca04c9c9cfe5c7f66dddad8cf[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Mon Nov 5 19:54:26 2018 -0600
+
+    More changes to Websockets in the backend
+
+[33mcommit d84a7cb1d0998397fb55aac046537005e471ce7b[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sat Nov 3 13:50:26 2018 -0500
+
+    search for friends feature
+
+[33mcommit 6aade0a405494813b8843eaa1cb90ab4b1e3556c[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sat Nov 3 13:38:14 2018 -0500
+
+    search for friends feature not completed yet
+
+[33mcommit 9558498780a11e607fe98b766e9834d46de742b7[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 31 16:54:58 2018 -0500
+
+    More Websocket changes on the backend
+
+[33mcommit b57ef81c466375db366e25f15c6800bdfaaeb0d4[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 31 10:07:36 2018 -0500
+
+    Added Websocket classes
+
+[33mcommit 14561a94d2bf41f5344f30b1bf4f218112e8a498[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sat Oct 27 18:42:58 2018 -0500
+
+    fixed cache images
+
+[33mcommit b687f025db4e91f57b53d332c2a5d926a0375bd1[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sat Oct 27 14:12:46 2018 -0500
+
+    Able to use the database API
+
+[33mcommit f12d53377bb043c550635dc2aea58cf9c30c14a9[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sat Oct 27 11:15:53 2018 -0500
+
+    Fixed bug where it returns the same reviews
+
+[33mcommit a8ceb49fa26018eb075cb60dfcb0d72c9b3440a9[m
+Merge: 11c7733 4467418
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 22:39:56 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 11c7733a104295881705d1cabab497e9e28ff929[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 22:39:47 2018 -0500
+
+    Updated review controller
+
+[33mcommit 4467418b2c4b79b5741f30460353090b704e001f[m
+Merge: ddf3250 a2e3116
+Author: Tenson <tensonc@iastate.edu>
+Date:   Thu Oct 25 22:07:28 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit ddf325089d2ffe57dc2d31ce2897bfb1d1b2e29a[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Thu Oct 25 22:06:57 2018 -0500
+
+    friendcontroller
+
+[33mcommit a2e3116a4f3a770ba1cfdf18afe19894ad7757fb[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 22:02:33 2018 -0500
+
+    Activity Feed is now working
+
+[33mcommit 7244430fb4419e7af2e20465c467b923d1ebaa40[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 21:49:24 2018 -0500
+
+    Friends review is now working
+
+[33mcommit f74d53d93cab7e52e281fbe3b8fd3bebc1fd1bc0[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 17:38:40 2018 -0500
+
+    Refined activity feed
+
+[33mcommit 5083f81b722f1f3ccd2ff0b7d44c453564d7d1af[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 17:33:42 2018 -0500
+
+    refined activity feed
+
+[33mcommit 6d42709ce0169369989c04e494c0ea6116c775cb[m
+Merge: 05af616 61225e5
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 14:10:42 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 05af6168f5718ad59de605d5d4959645b481af9b[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 25 14:10:38 2018 -0500
+
+    Feed
+
+[33mcommit 61225e526d7c09623a56e8076b684441d033fd27[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Oct 24 23:41:13 2018 -0500
+
+    friends
+
+[33mcommit 968954e71412d379c20774ba98a4380172db8b58[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Oct 24 23:08:08 2018 -0500
+
+    friends
+
+[33mcommit ab1a8d4528ed0faa7221fd1a1988fe4fcf2ef091[m
+Merge: 6f2cb4d 04e9fde
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Oct 24 22:44:26 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 6f2cb4dafd16ffa19c3fe677472e6ae61ca5fd7a[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Oct 24 22:42:20 2018 -0500
+
+    Making friends table
+
+[33mcommit 04e9fdeb4da6ae7df448ab26967e9090e7586773[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 24 22:27:12 2018 -0500
+
+    Activity Updated
+
+[33mcommit 6eeb1aa45ac734113da7464621f0477932225efd[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 24 21:57:37 2018 -0500
+
+    Activity Feed is now working
+
+[33mcommit 9798345c142f81ccd7732ef00dcdb1c50f92f36e[m
+Author: shabel <shabel@iastate.edu>
+Date:   Wed Oct 24 22:15:02 2018 +0000
+
+    Revert "First map test"
+    
+    This reverts commit d0b5b2761e0f0b0485c70466b94fbe7cbc4321d9
+
+[33mcommit d0b5b2761e0f0b0485c70466b94fbe7cbc4321d9[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Oct 24 17:09:17 2018 -0500
+
+    First map test
+
+[33mcommit 7d5cc846c977a428e5c69ebf38192b02937b5298[m
+Author: shabel <shabel@iastate.edu>
+Date:   Wed Oct 24 21:46:48 2018 +0000
+
+    New map test directory
+
+[33mcommit 3b4aef25ca7d62151a6636c4aef2bbaa6771735f[m
+Merge: bf847b1 943e7f1
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Oct 24 11:27:24 2018 -0500
+
+    Finishing off merging after resolving conflicts
+
+[33mcommit bf847b16e4653416dac14c50b80e97f17b8dde86[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Tue Oct 23 23:26:49 2018 -0500
+
+    commit
+
+[33mcommit 943e7f106ee36588696d860b9b39bb2f4736b51c[m
+Author: isaac <isanga@iastate.edu>
+Date:   Mon Oct 22 17:49:00 2018 -0500
+
+    Got the login to pull names from database
+
+[33mcommit 756040527c1b260bfbcbef9801f3f810a50fb344[m
+Author: isaac <isanga@iastate.edu>
+Date:   Mon Oct 22 17:01:03 2018 -0500
+
+    Login returns the first and last names
+
+[33mcommit 15a1b2d342e51d832d00407b681fcc6c856a69b7[m
+Author: isaac <isanga@iastate.edu>
+Date:   Mon Oct 22 16:21:48 2018 -0500
+
+    Added Profile View
+
+[33mcommit e2d96ae7a262c72dd1926373aa1be72f2f51816a[m
+Author: isaac <isanga@iastate.edu>
+Date:   Fri Oct 19 15:20:37 2018 -0500
+
+    Circular Profile Picture
+
+[33mcommit 3499c97c0110624b462a63196b2c3fe70bb4bb0b[m
+Merge: 6f7c379 3226fc6
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 18 16:45:38 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 6f7c3794479d8c7bd132e6477225bef3d27a2086[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 18 16:45:34 2018 -0500
+
+    Added function to upload profile picture
+
+[33mcommit 3226fc6d7c06d7f4598f8935c4513bad91cd974c[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 17 15:48:14 2018 -0500
+
+    Updated spring to send failure if same username already exists in server
+
+[33mcommit c2e40e0c275d792e9ba2f94ad2ba7db437897e48[m
+Merge: be880ba 08b705b
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 17 12:28:15 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit be880bad85717f45d07a7f6b8f28101e804e1ce6[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 17 12:22:04 2018 -0500
+
+    Removed unneeded dir
+
+[33mcommit 08b705ba6dbb9e3764b846b5a3b7a7ae8f8164a4[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 17 10:35:33 2018 -0500
+
+    Changed addReviews method to return json
+
+[33mcommit 13df74c12a04704ea73aa5dd256116e5446b2172[m
+Author: isaac <isanga@iastate.edu>
+Date:   Tue Oct 16 15:50:35 2018 -0500
+
+    Updated Json
+
+[33mcommit afbbb2163554f8a2db4067dd1abf432463575aa8[m
+Merge: 3c51d9e 80d56a4
+Author: isaac <isanga@iastate.edu>
+Date:   Tue Oct 16 14:51:20 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 3c51d9e5a65f7c457cf6f3f8be6e1f5eb5f7c09d[m
+Author: isaac <isanga@iastate.edu>
+Date:   Tue Oct 16 14:51:14 2018 -0500
+
+    Fixed few bugs
+
+[33mcommit 80d56a48e0b40d68249e5e22d2e540fb349c7ca1[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Oct 16 14:46:59 2018 -0500
+
+    changed what is returned in addUser
+
+[33mcommit 15f5b624fcc273eda5fb21d98762cd70aec5632a[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Oct 16 14:19:20 2018 -0500
+
+    Fixed the addReview method in the Review part of Spring
+
+[33mcommit dc82ab4a440758f942f38e6865091b42d97132e1[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 11 21:05:15 2018 -0500
+
+    added Profile activity
+
+[33mcommit deaefcebe831131b27626418e6c05dfc5729ccfb[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 11 20:35:17 2018 -0500
+
+    Completed login and registration
+
+[33mcommit 5fd9878aa44c35bb7dc19d1205fc97e0b070a353[m
+Merge: 66aa934 bae833b
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 11 19:43:00 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 66aa934c2b4cc30a242b43612e6e369cf1f33d94[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 11 19:42:53 2018 -0500
+
+    Swtiched from String to Json
+
+[33mcommit bae833b4a78273e137d3a90c2cf7acb2641f6ee6[m
+Merge: b6f094c 1882e99
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 10 16:52:00 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit b6f094c42e54ab73beb5d848ff2f5ea930f81720[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 10 16:51:49 2018 -0500
+
+    Spring working minus review addUser
+
+[33mcommit 1882e99927da13ca080ab190b187e551873d8e7b[m
+Merge: 639e500 c7167e0
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Oct 10 16:39:57 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 639e5009258914b496beeb75a083276c7d739823[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Oct 10 16:39:40 2018 -0500
+
+    Most updated review code
+
+[33mcommit c7167e0674019e99cfee6890fb2bc8263efca946[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 10 15:58:27 2018 -0500
+
+    Finishing up Spring
+
+[33mcommit 837082560fd4dc7bd56c2da48c04c6334f9816d0[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Oct 10 01:49:54 2018 -0500
+
+    Added the add file functions, they don't work completely though
+
+[33mcommit e727e15ca5962dc8f6b54a7e77f91eaac7c7fb74[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Tue Oct 9 23:00:19 2018 -0500
+
+    can access specific usernames/passwords
+
+[33mcommit 2d066ba60c541fa2ef9914b023d8454ae333b781[m
+Merge: 7c8fea5 e125bb3
+Author: Tenson <tensonc@iastate.edu>
+Date:   Tue Oct 9 22:55:31 2018 -0500
+
+    changed login controller, can access specfic usernames/passwords
+
+[33mcommit 7c8fea5a9480784b8bf7273fcbf5ce5eb3d55749[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Tue Oct 9 22:53:35 2018 -0500
+
+    Edited login controller. Can check specific usernames/passwords and find a match
+
+[33mcommit e125bb303cb2ee83bff12949a9951d79f93bc665[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Tue Oct 9 20:54:26 2018 -0500
+
+    Review + submit tab
+
+[33mcommit c733e799d521befd22609588c8273428f3b3db8a[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Oct 9 09:56:14 2018 -0500
+
+    Added Review classes in backend
+
+[33mcommit 63820082869b7f69a0dc07eaa26955ff8dcc63ab[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Mon Oct 8 23:37:01 2018 -0500
+
+    New Review work
+
+[33mcommit 79b729ac20af0da11ba329b1eaca6dc3b6fffbb3[m
+Merge: 1f3d358 341a77c
+Author: isaac <isanga@iastate.edu>
+Date:   Mon Oct 8 23:18:45 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 1f3d35854025679411028a6dcadad4b2347b1a63[m
+Author: isaac <isanga@iastate.edu>
+Date:   Mon Oct 8 23:13:25 2018 -0500
+
+    added registration
+
+[33mcommit 341a77cf49ce40edb969a514269760bbf9fec47b[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Mon Oct 8 12:53:15 2018 -0500
+
+    able to pull everything from database
+
+[33mcommit d1cb4ff5bc0e314419c77970f37c01d56dc82783[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sat Oct 6 15:55:41 2018 -0500
+
+    changed pom and application file
+
+[33mcommit 2fcfe649c24553c0ce0a17be36bbc87d40d70659[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Fri Oct 5 17:36:12 2018 -0500
+
+    changes to server connection
+
+[33mcommit 1d9682d5c28d27c6629669b56c7fd233789ce660[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Fri Oct 5 16:44:26 2018 -0500
+
+    Added checks for if username/password match
+
+[33mcommit a3bf3f16e5de535cf3b14c565334d8c51ec3f749[m
+Author: isaac <isanga@iastate.edu>
+Date:   Fri Oct 5 00:06:05 2018 -0500
+
+    login
+
+[33mcommit 2a2129634184c50f100d4ac7c74d989cf89ab45c[m
+Merge: b0983b9 101f39b
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Oct 4 19:59:42 2018 -0500
+
+    login
+
+[33mcommit 101f39bb754025f99765f4fc9f8036f08fdfccbb[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Oct 3 22:03:47 2018 -0500
+
+    Review page so far
+
+[33mcommit b0983b9db295a8e5efce463fb9245a01aaa27a25[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 3 16:49:49 2018 -0500
+
+    login
+
+[33mcommit 1a43d05972879ac533805e4af12196aaf3045848[m[33m ([m[1;32mtmp[m[33m)[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 3 15:36:53 2018 -0500
+
+    login php
+
+[33mcommit 22c55d46fe910366468a0187ca9463aac2ded7ef[m
+Merge: 05e8a62 4f8da1a
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 3 15:12:34 2018 -0500
+
+    login php
+
+[33mcommit 05e8a62b8360c7851582e8036611d908b6004639[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Oct 3 15:11:36 2018 -0500
+
+    php login
+
+[33mcommit 4f8da1a8c41a5cac03e729cd4dfdd5413343b555[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Tue Oct 2 16:07:01 2018 -0500
+
+    imported dependencies, edited login controller
+
+[33mcommit ccc0bf2123dd436d25561abb4fbc91c700b93755[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Sun Sep 30 19:41:12 2018 -0500
+
+    adding more functionality
+
+[33mcommit 3df565c4c0d220298f2d9b7f5247c6194aa41281[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Sep 26 14:29:17 2018 -0500
+
+    Getting Spring Setup
+
+[33mcommit 9392257d72dfe25c294a7c111fa32ac5e993ae46[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sun Sep 23 01:00:48 2018 -0500
+
+    Login
+
+[33mcommit be63b226808730b54b9da684cf5b1533ef2c9d7e[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sat Sep 22 18:17:26 2018 -0500
+
+    JSON Request
+
+[33mcommit 8fb136c346f197e0c831d5d4dc28b36f765e89a6[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:52:55 2018 -0500
+
+    JSON
+
+[33mcommit e68ba1259a5f2ad1d20c02c16e2f13d716071880[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:43:00 2018 -0500
+
+    JSON
+
+[33mcommit f06f50e0881cdb45d7ed14b2023b9ede30b17a86[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:40:53 2018 -0500
+
+    Empty Folder
+
+[33mcommit ae0b0e4e987001c45bf955bbe15a41093c37085b[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:39:35 2018 -0500
+
+    Empty Folder
+
+[33mcommit c6dd3f8a38db4637193735218136ae77b3904960[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:28:11 2018 -0500
+
+    JSON
+
+[33mcommit d5f6bde47639b8556319e2a2bff04f452757c2ad[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:27:17 2018 -0500
+
+    JSON
+
+[33mcommit e12f6a9b57e31dfb875f77863fce1392dab15643[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:25:43 2018 -0500
+
+    JSON
+
+[33mcommit 128255208281ff44f99b7dcf0af332278182b7c8[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 19 15:18:50 2018 -0500
+
+    Json
+
+[33mcommit 17b59c06c12626f3af92d2aab4c60877f3c73e28[m
+Merge: 2d318f4 6ce8592
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Sep 12 16:39:29 2018 -0500
+
+    Trying to get gitignore
+
+[33mcommit 2d318f47f7e6e9ce35c3a47317dc0d82b66441ca[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Wed Sep 12 16:35:56 2018 -0500
+
+    /
+
+[33mcommit 6ce8592c4b73ac09f9d804a3daf72d8178d563f5[m
+Merge: 8fbe257 7ff2c0a
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Sep 12 16:29:25 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit 8fbe257e0f8fd9f0962ae12f9f2e56aac99c5014[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Wed Sep 12 16:29:02 2018 -0500
+
+    added more exceptions to .gitignore
+
+[33mcommit 7ff2c0a2d8c37df75bdc2cdcb33cd3b63fe26813[m
+Author: shabel <shabel@iastate.edu>
+Date:   Wed Sep 12 21:21:05 2018 +0000
+
+    Added android studio gitignore
+
+[33mcommit d4f85d8f754e63b70d3f96ddf37343d1122dc4f9[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 12 15:48:12 2018 -0500
+
+    Wiki
+
+[33mcommit 36a6eb2a2fdbab051ca2a6f2a97590617a44ef93[m
+Author: isaac <isanga@iastate.edu>
+Date:   Wed Sep 12 15:41:32 2018 -0500
+
+    llama
+
+[33mcommit 78796d6d15b0875313c094abb4687dfc6da65b34[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Sep 12 14:44:00 2018 -0500
+
+    Basic android app experiment
+
+[33mcommit 62324efdf4e1a715890b4155849bc27542467437[m
+Author: Sam Habel <shabel@iastate.edu>
+Date:   Wed Sep 12 14:40:25 2018 -0500
+
+    Playing with studio
+
+[33mcommit 756233cef044419752a1aab68260ec8bf40646b4[m
+Author: shabel <shabel@iastate.edu>
+Date:   Wed Sep 12 19:04:47 2018 +0000
+
+    Add new directory
+
+[33mcommit 9157f07db7cf86fdc04ed2e9eef2185dd619ba38[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Sep 11 22:51:22 2018 -0500
+
+    Magic 8 ball app part 3
+
+[33mcommit 29426aacf1ef1c90f9c9bf5ed6c0645ad9632fe5[m
+Merge: eca0722 1382baa
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Sep 11 22:04:37 2018 -0500
+
+    Merge branch 'master' of https://git.linux.iastate.edu/cs309/Fall2018/SB_7
+
+[33mcommit eca0722b42bd7204ab93adbb124d19364c707a27[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Tue Sep 11 22:02:15 2018 -0500
+
+    Magic 8 Ball app part 2
+
+[33mcommit 1382baa31c390a244ac3df39093241c09555439a[m
+Merge: 88e8a84 b675bfb
+Author: isaac <isanga@iastate.edu>
+Date:   Tue Sep 11 15:52:23 2018 -0500
+
+    Merge branch 'isaacBranch'
+
+[33mcommit 88e8a84780e8e6c9029d6dabfb29b0549532a2fa[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Mon Sep 10 23:50:54 2018 -0500
+
+    Magic 8 ball app part 1
+
+[33mcommit 46f79341eab77992c50403aac4469567b2cd53ed[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Mon Sep 10 22:42:07 2018 -0500
+
+    8 ball App part 1
+
+[33mcommit 5c8cfe9469157e6f829c541e62b8bfa990cb8bcc[m
+Author: Josh Heiser <jheiser@iastate.edu>
+Date:   Sun Sep 9 22:29:18 2018 -0500
+
+    The first commit.
+
+[33mcommit 3080b7aa0ac77f8b291d1d2ce83741d58212ba59[m
+Author: jheiser <jheiser@iastate.edu>
+Date:   Mon Sep 10 02:34:31 2018 +0000
+
+    Add new directory
+
+[33mcommit 2953432965970bb127bc949b7cb5f835ae182202[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sun Sep 9 16:24:19 2018 -0500
+
+    first app
+
+[33mcommit 3e3bb8c05723f3f3ff6abe442afe6936f8449d7e[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sun Sep 9 16:07:10 2018 -0500
+
+    Phone call app
+
+[33mcommit e60a5894976e0a487247a729812462a0f0e005bf[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Sat Sep 8 21:08:10 2018 -0500
+
+    Playing around with android studios
+
+[33mcommit b675bfb75d1bc1c2cd5e2f6731c07b2ccd5029e7[m
+Author: isaac <isanga@iastate.edu>
+Date:   Sat Sep 8 20:18:22 2018 -0500
+
+    Google
+
+[33mcommit abd1f7ba3b94d6053b906ebc071151d7edabbc69[m
+Author: isaac <isanga@iastate.edu>
+Date:   Fri Sep 7 22:22:59 2018 -0500
+
+    New Activity
+
+[33mcommit ec7bd5a50d719d51598b3200998d3fafdc02cb79[m
+Author: Tenson <tensonc@iastate.edu>
+Date:   Fri Sep 7 14:08:10 2018 -0500
+
+    added readme
+
+[33mcommit 2f706969f09729ce307e0010c54acacb09eb1b49[m
+Author: tensonc <tensonc@iastate.edu>
+Date:   Fri Sep 7 19:05:50 2018 +0000
+
+    Add new directory
+
+[33mcommit a4d88d3ca4bb5ee9edd9a6960477b650a96afa99[m
+Author: isaac <isanga@iastate.edu>
+Date:   Thu Sep 6 16:55:27 2018 -0500
+
+    Simple Add
+
+[33mcommit b15cd43d7f026f17a936ec0976cf83cd9e755c50[m
+Author: isaac <isanga@iastate.edu>
+Date:   Tue Sep 4 16:02:09 2018 -0500
+
+    my first commit
+
+[33mcommit 872d3f70783c23f4665ee337bee7629a1eeade6b[m
+Author: sumon <sumon@iastate.edu>
+Date:   Thu Aug 30 05:26:29 2018 +0000
+
+    Add new directory
+
+[33mcommit 54ead6bf1d5ba77b4db6937eccb706ebeced6675[m
+Author: sumon <sumon@iastate.edu>
+Date:   Thu Aug 30 05:26:15 2018 +0000
+
+    Add new directory
+
+[33mcommit 2ad1be0436fd7a3eefe1a1535932a7752be780b4[m
+Author: sumon <sumon@iastate.edu>
+Date:   Thu Aug 30 05:26:06 2018 +0000
+
+    Add new directory
+
+[33mcommit 8143ea5e7119e0324d16afea51291f5fd3d8b99f[m
+Author: sumon <sumon@iastate.edu>
+Date:   Thu Aug 30 05:25:53 2018 +0000
+
+    Add new directory
+
+[33mcommit 7d63a4326343ed80eb38661ee51db5c6a7d7178f[m
+Author: sumon <sumon@iastate.edu>
+Date:   Thu Aug 30 05:23:50 2018 +0000
+
+    Initial commit
