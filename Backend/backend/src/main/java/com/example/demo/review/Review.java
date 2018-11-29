@@ -1,5 +1,10 @@
 package com.example.demo.review;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -12,13 +17,14 @@ public class Review {
 	@Id
 	@Column (name = "id")
 	@NotFound(action = NotFoundAction.EXCEPTION)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column (name = "user_who_posted")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String user_who_posted;
 	
-	@Column(name = "movieTitle")
+	@Column (name = "movie_title")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private String movieTitle;
 	
@@ -74,7 +80,7 @@ public class Review {
 	public int getScore() {
 		return score;
 	}
-	private void setScore(int score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 

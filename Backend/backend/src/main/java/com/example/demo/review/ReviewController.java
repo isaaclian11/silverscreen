@@ -1,11 +1,7 @@
 package com.example.demo.review;
 import java.util.List;
-import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,9 +21,10 @@ public class ReviewController {
 	}
 
 	@RequestMapping (method = RequestMethod.POST, path = "/review/newReview")
-	public void addNewReview(@RequestBody Review review)
+	public Review addNewReview(@RequestBody Review review)
 	{
-		reviewRepository.save(review);
+		Review savedReview = reviewRepository.save(review);
+		return savedReview;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/review/friendsReview")
