@@ -39,10 +39,9 @@ import java.util.ArrayList;
 
 public class ActivityFeed extends AppCompatActivity {
 
-    private static final int IMAGE_RESULT = 1;
     RecyclerView listView;
     Bitmap bitmap;
-    String URL = "http://10.26.36.144:8080/review/friendsReview";
+    String URL = "http://10.30.186.53:8080/review/friendsReview";
     ImageView findFriends, latestMovies, home, profile;
     ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();
