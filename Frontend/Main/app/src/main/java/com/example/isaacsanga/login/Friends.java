@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -55,7 +56,7 @@ public class Friends extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 try {
-                    JSONArray jsonArray = response.getJSONArray("response");
+                    JSONArray jsonArray = response.getJSONArray("result");
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject result = jsonArray.getJSONObject(i);
                         friendsModels.add(new FriendsModel(result.getString("username")));
@@ -76,6 +77,9 @@ public class Friends extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         findFriends = findViewById(R.id.findFriends);
         latestMovies = findViewById(R.id.latestMovies);
