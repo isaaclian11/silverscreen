@@ -60,6 +60,7 @@ public class StatusReply extends AppCompatActivity {
                     }
                     replyAdapter = new ReplyAdapter(getApplicationContext(), replyModels);
                     recyclerView.setAdapter(replyAdapter);
+                    recyclerView.scrollToPosition(replyModels.size()-1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -73,7 +74,6 @@ public class StatusReply extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         reply.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +103,7 @@ public class StatusReply extends AppCompatActivity {
                 requestQueue.add(jsonObjectRequest);
                 replyModels.add(new ReplyModel(textView.getText().toString(), ((CurrentUserInfo) getApplication()).getUsername()));
                 replyAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(replyModels.size()-1);
                 textView.getText().clear();
             }
         });

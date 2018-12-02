@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -28,10 +29,12 @@ public class LatestMovies extends AppCompatActivity {
 
     private final String APIKey = "cf48d0b2aede68f37177a9c799b06a45";
     String getLatest = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
+    String searchURl = "https://api.themoviedb.org/3/search/movie?api_key=cf48d0b2aede68f37177a9c799b06a45&language=en-US&query=";
     LatestMovieListAdapter latestMovieListAdapter;
     RecyclerView listView;
     ArrayList<MovieModel> movies = new ArrayList<>();
-    ImageView findFriends, latestMovies, home, profile;
+    ImageView findFriends, latestMovies, home, profile, search;
+    EditText searchMovie;
 
 
     @Override
@@ -40,6 +43,9 @@ public class LatestMovies extends AppCompatActivity {
         setContentView(R.layout.activity_latest_movies);
         Toolbar toolbar = findViewById(R.id.menubar);
         setSupportActionBar(toolbar);
+
+        search = findViewById(R.id.searchMovie);
+        searchMovie = findViewById(R.id.searchMovieText);
 
         listView = findViewById(R.id.movieList);
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getLatest + APIKey, null, new Response.Listener<JSONObject>() {
@@ -105,6 +111,44 @@ public class LatestMovies extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!searchMovie.getText().toString().isEmpty()){
+                    movies.clear();
+                    latestMovieListAdapter.notifyDataSetChanged();
+                    JsonObjectRequest searchRequest = new JsonObjectRequest(Request.Method.GET, searchURl+searchMovie.getText().toString(), null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonArray = response.getJSONArray("results");
+                                for(int i=0; i<jsonArray.length(); i++){
+                                    JSONObject current = jsonArray.getJSONObject(i);
+                                    int movieID = current.getInt("id");
+                                    String movieTitle = current.getString("title");
+                                    String posterUrl = current.getString("poster_path");
+                                    movies.add(new MovieModel(movieID, movieTitle, posterUrl, getIntent().getStringExtra("username")));
+                                }
+                                latestMovieListAdapter.notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    RequestQueue searchRequestQ = Volley.newRequestQueue(getApplicationContext());
+                    searchRequestQ.add(searchRequest);
+            }
+
+
+            }
+        });
+
 
    }
 }
