@@ -21,10 +21,10 @@ public class ReviewController {
 	}
 
 	@RequestMapping (method = RequestMethod.POST, path = "/review/newReview")
-	public Review addNewReview(@RequestBody Review review)
+	public postReviewJson addNewReview(@RequestBody Review review)
 	{
 		Review savedReview = reviewRepository.save(review);
-		return savedReview;
+		return new postReviewJson("success");
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/review/friendsReview")
@@ -37,5 +37,6 @@ public class ReviewController {
 	public ReplyJson findRepliesOfReviews(@RequestBody Review id){
 		return new ReplyJson(reviewRepository.findReplies(id.getId()));
 	}
+
 
 }

@@ -26,7 +26,7 @@ public class Review {
 	
 	@Column (name = "movie_title")
 	@NotFound(action = NotFoundAction.EXCEPTION)
-	private String movieTitle;
+	private String movie_title;
 	
 	//the users review in string from
 	@Column (name = "review")
@@ -110,10 +110,10 @@ public class Review {
 		this.user_who_posted = user_who_posted;
 	}
 	public String getmovieTitle() {
-		return movieTitle;
+		return movie_title;
 	}
-	public void setmovieTitle(String movieTitle) {
-		 this.movieTitle = movieTitle;
+	public void setMovie_title(String movieTitle) {
+		 this.movie_title = movieTitle;
 	}
 	public int getMovieID() {
 		return movieID;
@@ -126,7 +126,7 @@ public class Review {
 }
 
 interface ReviewAndName{
-	String getMovieTitle();
+	String getMovie_title();
 	String getId();
 	String getReview();
 	String getuser_who_posted();
