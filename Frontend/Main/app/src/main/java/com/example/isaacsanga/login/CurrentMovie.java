@@ -112,6 +112,14 @@ public class CurrentMovie extends AppCompatActivity implements PopupMenu.OnMenuI
                     JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST, postReviewURL, reviewInfo, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            try {
+                                if(response.getString("result").equals("success")){
+                                    review.getText().clear();
+                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
                         }
                     }, new Response.ErrorListener() {

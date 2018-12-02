@@ -25,8 +25,10 @@
         <activity android:name=".Register" />
         <activity android:name=".ActivityFeed" />
         <activity android:name=".LatestMovies" />
-        <activity android:name=".StatusReply" />
-        <activity android:name=".CurrentMovie" />
+        <activity android:name=".StatusReply"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".CurrentMovie"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Friends" />
         <activity android:name=".Profile" />
         <activity android:name=".Chat"></activity>

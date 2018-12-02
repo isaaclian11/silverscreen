@@ -1,6 +1,7 @@
 package com.example.isaacsanga.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.Display;
@@ -36,12 +37,20 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         myViewHolder.movieTitle.setText(models.get(i).getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+models.get(i).getPoster()).into(myViewHolder.moviePoster);
         myViewHolder.getReply.setText(models.get(i).getDesc());
         myViewHolder.Name.setText(models.get(i).getName());
         myViewHolder.score.setText("Score: " + Integer.toString(models.get(i).getScore()));
+        myViewHolder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, StatusReply.class);
+                intent.putExtra("id", Integer.toString(models.get(i).getId()));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 
@@ -53,7 +62,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView movieTitle, getReply, Name, score;
-        ImageView moviePoster;
+        ImageView moviePoster, reply;
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -62,6 +71,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
             getReply = itemView.findViewById(R.id.feedReview);
             Name = itemView.findViewById(R.id.feedName);
             score = itemView.findViewById(R.id.feedScore);
+            reply = itemView.findViewById(R.id.replyButton);
         }
     }
 
