@@ -65,3 +65,7 @@ public class Login {
 	}
 
 }
+
+interface myFriends{
+	String getUsername();
+}

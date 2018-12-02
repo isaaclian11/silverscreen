@@ -3,6 +3,7 @@ package com.example.demo.login;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.friends.friendListJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,10 +116,9 @@ public class LoginController {
         return friendResults;
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/myFriends")
-	public myFriendsJSON myFriends(@RequestBody String username){
-		return loginsRepository.findMyFriends(username);
-
+	@RequestMapping(method = RequestMethod.POST, path = "/myFriends")
+	public myFriendsJSON myFriends(@RequestBody Login username) {
+		return new myFriendsJSON(loginsRepository.findMyFriends(username.getUsername()));
 	}
 
 }

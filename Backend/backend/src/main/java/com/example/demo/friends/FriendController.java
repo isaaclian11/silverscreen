@@ -3,6 +3,7 @@ package com.example.demo.friends;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.login.myFriendsJSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,10 @@ public class FriendController
         
         return results;
     }
+
+
+
+
 
 }
 
