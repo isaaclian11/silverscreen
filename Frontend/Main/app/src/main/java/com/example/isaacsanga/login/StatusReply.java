@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class StatusReply extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_reply);
         final Button reply = findViewById(R.id.post);
-        final TextView textView = findViewById(R.id.comment);
+        final EditText textView = findViewById(R.id.comment);
         recyclerView = findViewById(R.id.replyList);
         final JSONObject jsonObject = new JSONObject();
         try {
@@ -70,7 +72,9 @@ public class StatusReply extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         reply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +101,9 @@ public class StatusReply extends AppCompatActivity {
                 });
                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 requestQueue.add(jsonObjectRequest);
+                replyModels.add(new ReplyModel(textView.getText().toString(), ((CurrentUserInfo) getApplication()).getUsername()));
+                replyAdapter.notifyDataSetChanged();
+                textView.getText().clear();
             }
         });
     }
