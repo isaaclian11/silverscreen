@@ -80,7 +80,7 @@ public class ActivityFeed extends AppCompatActivity {
                         descriptions.add(reviews.getString("review"));
                         movieID.add(reviews.getString("posterID"));
                         movieScore.add(reviews.getInt("score"));
-                        movieTitle.add(reviews.getString("movieTitle"));
+                        movieTitle.add(reviews.getString("movie_title"));
                     }
                     for(int i=0; i<names.size(); i++){
                         Model model = new Model(id.get(i), movieTitle.get(i), names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));

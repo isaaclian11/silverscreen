@@ -2,6 +2,7 @@ package com.example.isaacsanga.login;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,9 +37,18 @@ public class LatestMovieListAdapter extends RecyclerView.Adapter<LatestMovieList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
         myViewHolder.movieTitle.setText(models.get(i).getMovieTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+models.get(i).getMoviePoster()).into(myViewHolder.moviePoster);
+
+        myViewHolder.moviePoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CurrentMovie.class);
+                intent.putExtra("movieID", Integer.toString(models.get(i).getMovieID()));
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
