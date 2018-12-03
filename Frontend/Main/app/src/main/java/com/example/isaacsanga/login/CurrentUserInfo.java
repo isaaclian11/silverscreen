@@ -4,7 +4,8 @@ import android.app.Application;
 
 public class CurrentUserInfo extends Application {
 
-    private String username;
+    //Information of the user that is currently logged in
+    private String username, admin;
 
     public String getUsername() {
         return username;

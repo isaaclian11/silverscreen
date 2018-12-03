@@ -83,7 +83,7 @@ public class ActivityFeed extends AppCompatActivity {
                         movieTitle.add(reviews.getString("movie_title"));
                     }
                     for(int i=0; i<names.size(); i++){
-                        Model model = new Model(id.get(i), movieTitle.get(i), names.get(i), descriptions.get(i), movieID.get(i), getIntent().getStringExtra("username"), movieScore.get(i));
+                        Model model = new Model(id.get(i), movieTitle.get(i), names.get(i), descriptions.get(i), movieID.get(i), 0, movieScore.get(i));
                         arrayList.add(model);
                     }
                     listViewAdapter = new ListViewAdapter(getApplicationContext(), arrayList);

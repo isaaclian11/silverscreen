@@ -43,7 +43,10 @@ public class StatusReply extends AppCompatActivity {
         recyclerView = findViewById(R.id.replyList);
         final JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("id", getIntent().getStringExtra("id"));
+            if(Integer.parseInt(getIntent().getStringExtra("parentID"))==0)
+                jsonObject.put("id", getIntent().getStringExtra("id"));
+            else
+                jsonObject.put("id", getIntent().getStringExtra("parentID"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -83,7 +86,11 @@ public class StatusReply extends AppCompatActivity {
                 try {
                     jsonObject.put("user_who_posted", ((CurrentUserInfo) getApplication()).getUsername());
                     jsonObject.put("review", textView.getText().toString());
-                    jsonObject.put("parentID", getIntent().getStringExtra("id"));
+                    if(Integer.parseInt(getIntent().getStringExtra("parentID"))==0)
+                        jsonObject.put("parentID", getIntent().getStringExtra("id"));
+                    else
+                        jsonObject.put("parentID", getIntent().getStringExtra("parentID"));                    jsonObject.put("movie_title", getIntent().getStringExtra("movie_title"));
+                    jsonObject.put("posterID", getIntent().getStringExtra("posterID"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

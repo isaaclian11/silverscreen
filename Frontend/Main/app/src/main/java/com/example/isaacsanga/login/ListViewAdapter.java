@@ -48,10 +48,14 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, StatusReply.class);
                 intent.putExtra("id", Integer.toString(models.get(i).getId()));
+                intent.putExtra("parentID", Integer.toString(models.get(i).parentID()));
+                intent.putExtra("movie_title", models.get(i).getTitle());
+                intent.putExtra("posterID", models.get(i).getPoster());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
+
     }
 
 

@@ -5,7 +5,7 @@ public class Model {
     String name;
     String desc;
     String poster;
-    String me;
+    int parentID;
     int score;
     String title;
 
@@ -30,8 +30,8 @@ public class Model {
         return poster;
     }
 
-    public String getMe() {
-        return me;
+    public int parentID() {
+        return parentID;
     }
 
     public String getTitle() {
@@ -42,12 +42,12 @@ public class Model {
         this.title = title;
     }
 
-    public Model(int id, String title, String name, String desc, String poster, String me, int score) {
+    public Model(int id, String title, String name, String desc, String poster, int parentID, int score) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.poster = poster;
-        this.me = me;
+        this.parentID = parentID;
         this.score = score;
         this.title = title;
     }
