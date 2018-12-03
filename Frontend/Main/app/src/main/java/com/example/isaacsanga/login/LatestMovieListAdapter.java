@@ -46,6 +46,7 @@ public class LatestMovieListAdapter extends RecyclerView.Adapter<LatestMovieList
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CurrentMovie.class);
                 intent.putExtra("movieID", Integer.toString(models.get(i).getMovieID()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });

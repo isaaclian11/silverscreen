@@ -38,7 +38,7 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Draft[] drafts = {new Draft_6455()};
-                String w = "ws://10.26.13.93:8080/websocket/"+e1.getText().toString();
+                String w = "ws://10.26.15.118:8080/websocket/"+e1.getText().toString();
 
                 try {
                     Log.d("Socket:", "Trying socket");

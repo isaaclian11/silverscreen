@@ -41,7 +41,7 @@ public class ActivityFeed extends AppCompatActivity {
 
     RecyclerView listView;
     Bitmap bitmap;
-    String URL = "http://10.30.186.53:8080/review/friendsReview";
+    String URL = "http://10.26.15.118:8080/review/friendsReview";
     ImageView findFriends, latestMovies, home, profile;
     ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();

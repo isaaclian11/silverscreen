@@ -27,8 +27,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class StatusReply extends AppCompatActivity {
-    String URL = "http://10.30.186.53:8080/review/newReview";
-    String replyURL = "http://10.30.186.53:8080/review/replies";
+    String URL = "http://10.26.15.118:8080/review/newReview";
+    String replyURL = "http://10.26.15.118:8080/review/replies";
     ReplyAdapter replyAdapter;
     ArrayList<ReplyModel> replyModels = new ArrayList<>();
     RecyclerView recyclerView;
