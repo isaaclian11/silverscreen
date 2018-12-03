@@ -24,4 +24,8 @@ public interface ReviewRepository extends JpaRepository <Review, Integer> {
 
     @Query(value = "insert into review(user_who_posted, score, movieID, parentID, review) values (?1, ?2, ?3, ?4, ?5)", nativeQuery = true)
     public void postReview(String user_who_posted, int score, int movieID, int parentID, String review);
+
+    @Query(value = "select r.parentID, r.movie_title, r.movieID, r.id, r.score, r.user_who_posted, r.review, r.posterID from review r " +
+            "where r.user_who_posted=?1 order by r.id desc", nativeQuery = true)
+    public List<ReviewAndName> myReviews(String username);
 }

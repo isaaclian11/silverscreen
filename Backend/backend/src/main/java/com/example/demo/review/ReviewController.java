@@ -60,5 +60,10 @@ public class ReviewController {
 		return new ReplyJson(reviewRepository.findReplies(id.getId()));
 	}
 
+	@RequestMapping(method = RequestMethod.POST, path = "/review/myReviews")
+	public jsonResponse findMyReivews(@RequestBody Review username)
+	{
+		return new jsonResponse(reviewRepository.myReviews(username.getuser_who_posted()));
+	}
 
 }

@@ -138,4 +138,8 @@ public class LoginController {
         
         return friendResults;
     }
+    @RequestMapping(method = RequestMethod.POST, path = "/myFriends")
+	public myFriendsJSON myFrines(@RequestBody Login login){
+    	return new myFriendsJSON(loginsRepository.findMyFriends(login.getUsername()));
+	}
 }

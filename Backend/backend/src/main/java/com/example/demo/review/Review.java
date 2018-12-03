@@ -229,6 +229,7 @@ interface ReviewAndName{
 	String getposterID();
 	String getScore();
 	String getMovieID();
+	String getParentID();
 }
 
 interface ReviewReplies{
