@@ -79,6 +79,10 @@ public class Login extends AppCompatActivity {
                         startActivity(loginIntent);
                         CurrentUserInfo currentUserInfo = (CurrentUserInfo) getApplicationContext();
                         currentUserInfo.setUsername(email);
+                        if(email.equals("isaac"))
+                            currentUserInfo.setAdmin(true);
+                        else
+                            currentUserInfo.setAdmin(false);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error: Wrong username or password", Toast.LENGTH_SHORT).show();
                     }

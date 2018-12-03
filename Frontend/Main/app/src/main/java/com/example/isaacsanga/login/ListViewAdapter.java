@@ -44,7 +44,9 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
         myViewHolder.Name.setText(models.get(i).getName());
         myViewHolder.score.setText("Score: " + Integer.toString(models.get(i).getScore()));
         String username = ((CurrentUserInfo) mContext.getApplicationContext()).getUsername();
-        if(!models.get(i).getName().equals(username))
+        if(((CurrentUserInfo) mContext.getApplicationContext()).getAdmin())
+            myViewHolder.delete.setVisibility(View.VISIBLE);
+        else if(!models.get(i).getName().equals(username))
             myViewHolder.delete.setVisibility(View.INVISIBLE);
         else{
             myViewHolder.delete.setVisibility(View.VISIBLE);
