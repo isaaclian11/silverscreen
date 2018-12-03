@@ -8,15 +8,6 @@
     tools:context="com.example.isaacsanga.login.Chat">
 
     <EditText
-        android:layout_marginTop="20dp"
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:hint="USER ID"
-        android:textSize="20dp"
-        android:id="@+id/et1"
-        />
-
-    <EditText
         android:layout_height="50dp"
         android:layout_width="match_parent"
         android:hint="message"

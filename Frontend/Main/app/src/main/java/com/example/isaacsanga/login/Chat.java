@@ -29,7 +29,6 @@ public class Chat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         b2=(Button)findViewById(R.id.bt2);
-        e1=(EditText)findViewById(R.id.et1);
         e2=(EditText)findViewById(R.id.et2);
         t1=(TextView)findViewById(R.id.tx1);
 
@@ -47,7 +46,7 @@ public class Chat extends AppCompatActivity {
                     //Log.d("first", "run() returned: " + s);
                     //s=t1.getText().toString();
                     //Log.d("second", "run() returned: " + s);
-                    t1.setText(s+" Server:"+message);
+                    t1.setText(s + " " +message);
                 }
 
                 @Override
@@ -80,7 +79,7 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    cc.send("@" + getIntent().getStringExtra("friendsUsername") + " " + e2.getText().toString());
+                    cc.send( "@" + getIntent().getStringExtra("friendsUsername") + " " + e2.getText().toString() + "\n");
                 }
                 catch (Exception e)
                 {
