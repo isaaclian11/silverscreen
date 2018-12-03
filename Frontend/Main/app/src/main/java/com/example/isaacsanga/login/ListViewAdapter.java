@@ -11,14 +11,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyViewHolder>{
     private Context mContext;
     private List<Model> models;
-
+    String URL = "http://10.29.181.149:8080/review/delete";
 
     public ListViewAdapter(Context mContext, List<Model> models) {
         this.mContext = mContext;
@@ -50,13 +59,40 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
             myViewHolder.delete.setVisibility(View.INVISIBLE);
         else{
             myViewHolder.delete.setVisibility(View.VISIBLE);
-            myViewHolder.delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
+        myViewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("id", models.get(i).getId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if(response.get("result").equals("success")){
+                                models.remove(i);
+                                notifyItemRemoved(i);
+                                notifyItemRangeChanged(i, models.size());
+                                notifyDataSetChanged();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+                requestQueue.add(jsonObjectRequest);
+            }
+        });
         myViewHolder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
