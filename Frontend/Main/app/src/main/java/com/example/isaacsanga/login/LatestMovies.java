@@ -48,7 +48,7 @@ public class LatestMovies extends AppCompatActivity {
         searchMovie = findViewById(R.id.searchMovieText);
 
         listView = findViewById(R.id.movieList);
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getLatest + APIKey, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getLatest + APIKey, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -58,10 +58,11 @@ public class LatestMovies extends AppCompatActivity {
                         int movieID = jsonObject.getInt("id");
                         String movieTitle = jsonObject.getString("title");
                         String posterUrl = jsonObject.getString("poster_path");
-                        movies.add(new MovieModel(movieID, movieTitle, posterUrl, getIntent().getStringExtra("username")));
+                        movies.add(new MovieModel(movieID, movieTitle, posterUrl));
                     }
                     latestMovieListAdapter = new LatestMovieListAdapter(getApplicationContext(), movies);
                     listView.setAdapter(latestMovieListAdapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -75,7 +76,8 @@ public class LatestMovies extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
-        listView.setLayoutManager(new GridLayoutManager(this, 3));
+        listView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+
 
         findFriends = findViewById(R.id.findFriends);
         latestMovies = findViewById(R.id.latestMovies);
@@ -128,7 +130,7 @@ public class LatestMovies extends AppCompatActivity {
                                     int movieID = current.getInt("id");
                                     String movieTitle = current.getString("title");
                                     String posterUrl = current.getString("poster_path");
-                                    movies.add(new MovieModel(movieID, movieTitle, posterUrl, getIntent().getStringExtra("username")));
+                                    movies.add(new MovieModel(movieID, movieTitle, posterUrl));
                                 }
                                 latestMovieListAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {

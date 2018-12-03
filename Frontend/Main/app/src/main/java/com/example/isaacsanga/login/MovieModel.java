@@ -4,13 +4,11 @@ public class MovieModel {
     private int movieID;
     private String movieTitle;
     private String moviePoster;
-    private String username;
 
-    public MovieModel(int movieID, String movieTitle, String moviePoster, String username) {
+    public MovieModel(int movieID, String movieTitle, String moviePoster) {
         this.movieID = movieID;
         this.movieTitle = movieTitle;
         this.moviePoster = moviePoster;
-        this.username = username;
     }
 
     public int getMovieID() {
@@ -37,11 +35,5 @@ public class MovieModel {
         this.moviePoster = moviePoster;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
