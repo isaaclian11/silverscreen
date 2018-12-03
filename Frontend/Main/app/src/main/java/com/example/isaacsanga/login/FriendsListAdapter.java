@@ -1,6 +1,8 @@
 package com.example.isaacsanga.login;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,9 +35,20 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
 
         myViewHolder.username.setText(list.get(i).username);
+        myViewHolder.chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Chat.class);
+                intent.putExtra("friendsUsername", list.get(i).getUsername());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -47,10 +60,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView username;
+        ImageView chat;
 
         public MyViewHolder(View itemView){
             super(itemView);
             username = itemView.findViewById(R.id.friendsListUsername);
+            chat = itemView.findViewById(R.id.chat);
         }
     }
 }
