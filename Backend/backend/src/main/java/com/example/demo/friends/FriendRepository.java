@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Method that is used to link to the Friend table in the database and its main ID type.
+ *
+ */
 @Repository
 @EnableJpaRepositories
 public interface FriendRepository extends JpaRepository <Friend, Integer> 

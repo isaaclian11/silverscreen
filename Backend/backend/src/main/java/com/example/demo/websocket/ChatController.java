@@ -16,6 +16,12 @@ public class ChatController {
 	ChatRepository chatRepository;
 	
 	private final Logger logger = LoggerFactory.getLogger(ChatController.class);
+	
+	/**
+	 * Method that returns all of the chat messages from the server. This is used when a account/user first
+	 * joins the server.
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/chat")
 	public java.util.List<Chat> getAllHistory()
 	{
@@ -23,6 +29,11 @@ public class ChatController {
       //returns the list of chat History
       return chatRepository.findAll();
 	}
+	/**
+	 * Method that is used to save a chat message to the database. This is used for the history.
+	 * @param chat
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/chat/add")
 	public jsonResponse saveChat(@RequestBody Chat chat) {
 		logger.info("Entered into Controller layer");
