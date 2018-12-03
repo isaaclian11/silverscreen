@@ -26,15 +26,42 @@ import antlr.collections.List;
 @Component
 public class WebSocketServer {
 	@Autowired
+	/**
+	 * Repository used to communcate with the server. This is used for the History.
+	 */
 	ChatRepository chatRepository;
+	/**
+	 * Value that keeps track of the current sessions that the user is in
+	 */
 	private Session session;
+	/**
+	 * Hash map that represents the  
+	 */
 	private static Map<Session, String> sessionUserMap = new HashMap();
+	/**
+	 * Hash map that represents all of the usernames in a session.
+	 */
 	public static Map<String, Session> usernameSessionMap = new HashMap();
 	private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+	/**
+	 * Array List that stores the histroy for the chat
+	 */
 	protected ArrayList<String> chatHistory = new ArrayList<String>();
+	/**
+	 * String that stores who sent the message
+	 */
 	private String sender;
+	/**
+	 * String that stores who the message is intended to.
+	 */
 	private String recipient;
 	
+	/**
+	 * Method that will add a account to the serveer when they request this method
+	 * @param session
+	 * @param username
+	 * @throws IOException
+	 */
 	@OnOpen
 	public void onOpen(Session session, @PathParam("username") String username) throws IOException {
 		//keeps track of the name of user (this is important when pushing the message to the server)
@@ -48,6 +75,13 @@ public class WebSocketServer {
 		broadcast(message);
 	}
 	
+	/**
+	 * Method that will send a message, either to everyone in the server, or just to one person, when
+	 * method is called.
+	 * @param session
+	 * @param message
+	 * @throws IOException
+	 */
 	@OnMessage
 	public void onMessage(Session session, String message) throws IOException {
 		logger.info("Entered into message: Got Message: " + message);
@@ -72,6 +106,11 @@ public class WebSocketServer {
 	}
 	
 	@OnClose
+	/**
+	 * Method that removes a account from the hashmap and removes them from the server when the leave.
+	 * @param session
+	 * @throws IOException
+	 */
 	public void onClose(Session session) throws IOException {
 		logger.info("Entered into close");
 		//finds the user and removes them from the session
@@ -82,11 +121,21 @@ public class WebSocketServer {
 		String message = "user " + username + " has left the chat";
 		broadcast(message);
 	}
+	/**
+	 * Method that is used for debugging when errors occur in the server.
+	 * @param session
+	 * @param throwable
+	 */
 	@OnError
 	public void onError (Session session, Throwable throwable) {
 		logger.info("Entered into error");
 	}
-	
+	/**
+	 * Method that helps assist the onMessage method when a account is intended to send a message to another
+	 * particular account/user instead of everyone on the server.
+	 * @param username
+	 * @param message
+	 */
 	public void sendMessageToAPractiuclarUser(String username, String message) {
 		try {
 			//attempts to send the String message to the user that has been passed through
@@ -99,6 +148,11 @@ public class WebSocketServer {
 		}
 	}
 	
+	/**
+	 * Method that is used to send the message to the other intended accounts/user.
+	 * @param message
+	 * @throws IOException
+	 */
 	public static void broadcast(String message) throws IOException {
 		sessionUserMap.forEach((session, username) -> {
 			synchronized(session){

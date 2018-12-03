@@ -8,6 +8,11 @@ import java.util.List;
 
 @Repository
 @EnableJpaRepositories
+/**
+ * Method that links to the database, specifying the review table (since we want to add this
+ * information to reviews) and the type of ID it uses.
+ *
+ */
 public interface ReviewRepository extends JpaRepository <Review, Integer> {
 
     @Query(value = "select distinct r.movie_title, r.movieID, r.id, r.score, r.user_who_posted, r.review, r.posterID from review r, friends f " +

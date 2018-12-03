@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Method that links to the Login table and its main ID in the database.
+ *
+ */
 @Repository
 public interface LoginRepository extends JpaRepository<Login, String> 
 {

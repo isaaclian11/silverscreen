@@ -3,7 +3,6 @@ package com.example.demo.login;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.friends.friendListJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,11 @@ public class LoginController {
 	
 	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
+	/**
+	 * This method is used to 
+	 * @param login
+	 * @return
+	 */
 	@PostMapping(path = "/user")
 	public String postUser(@RequestBody Login login) 
 	{
@@ -36,6 +40,10 @@ public class LoginController {
 	}
 	
     @RequestMapping(method = RequestMethod.GET, path = "/users")
+    /**
+     * This method is used for returning all of the users. This is a debugging method
+     * @return
+     */
     public List<Login> getAllUsers() 
     {
         logger.info("Entered into Controller Layer");
@@ -44,7 +52,12 @@ public class LoginController {
         
         return results;
     }
-    
+    /**
+     * This method is used to determine if a user has an account. If they do, it then checks if the password given
+     * matches the password for the account on the database.
+     * @param loginInformation
+     * @return
+     */
 	@RequestMapping(method = RequestMethod.POST, path = "/users111")
 	public jsonResponse checkUserName(@RequestBody String loginInformation)
 	{
@@ -78,7 +91,12 @@ public class LoginController {
         jsonResponse jsonResponse = new jsonResponse("failure");
         return jsonResponse;
 	}
-	
+	/**
+	 * This method is used to add a new user to the database. This is used when a user wants to create a new
+	 * account.
+	 * @param login
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/login/add")
 	public jsonResponse addUser(@RequestBody Login login) {
 		if (loginsRepository.existsById(login.getUsername()) == true){
@@ -91,7 +109,12 @@ public class LoginController {
 			return jsonResponse;
 		}
 	}
-	
+	/**
+	 * This method searches for other users by getting all users from the database and comparing them to
+	 * the string.
+	 * @param search
+	 * @return
+	 */
     @RequestMapping(method = RequestMethod.POST, path = "/searchFriends")
     public ArrayList<String> searchForUser(@RequestBody String search) 
     {
@@ -115,10 +138,4 @@ public class LoginController {
         
         return friendResults;
     }
-
-	@RequestMapping(method = RequestMethod.POST, path = "/myFriends")
-	public myFriendsJSON myFriends(@RequestBody Login username) {
-		return new myFriendsJSON(loginsRepository.findMyFriends(username.getUsername()));
-	}
-
 }

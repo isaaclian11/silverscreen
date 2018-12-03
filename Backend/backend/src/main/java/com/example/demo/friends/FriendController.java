@@ -20,12 +20,19 @@ import com.example.demo.login.Login;
 @RestController
 public class FriendController 
 {
-	
+	/**
+	 * The repository that the controller links to. This is used so that it can connect to the correct table
+	 * in the database.
+	 */
 	@Autowired
 	FriendRepository friendsRepository;
-	
 	private final Logger logger = LoggerFactory.getLogger(FriendController.class);
 
+	/**
+	 * Method that will adds friends to the database.
+	 * @param friend
+	 * @return
+	 */
 	@PostMapping (path = "/friends")
 	public String postFriend(@RequestBody Friend friend) 
 	{
@@ -36,7 +43,11 @@ public class FriendController
         return "success";
 	}
 	
-    @RequestMapping(method = RequestMethod.GET, path = "/allFriends")
+	/**
+	 * Method that will get all friends on the database.
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, path = "/allFriends")
     public List<Friend> getAllFriends() 
     {
         logger.info("Entered into Controller Layer");
