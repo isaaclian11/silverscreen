@@ -33,7 +33,6 @@
 
         <EditText
             android:id="@+id/searchMovieText"
-            android:focusable="false"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
