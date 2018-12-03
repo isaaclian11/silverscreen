@@ -32,7 +32,7 @@ public class CurrentMovie extends AppCompatActivity implements PopupMenu.OnMenuI
     int movieScore = -1;
     private String API = "?api_key=cf48d0b2aede68f37177a9c799b06a45&language=en-US";
     String movieInfoURL = "https://api.themoviedb.org/3/movie/";
-    String postReviewURL = "http://10.26.48.202:8080/review/newReview";
+    String postReviewURL = "http://10.29.181.149:8080/review/newReview";
     String movieTitle, posterURL;
     CurrentUserInfo currentUser;
     @Override

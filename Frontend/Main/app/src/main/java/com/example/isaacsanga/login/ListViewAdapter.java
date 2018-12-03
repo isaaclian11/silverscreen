@@ -43,6 +43,18 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
         myViewHolder.getReply.setText(models.get(i).getDesc());
         myViewHolder.Name.setText(models.get(i).getName());
         myViewHolder.score.setText("Score: " + Integer.toString(models.get(i).getScore()));
+        String username = ((CurrentUserInfo) mContext.getApplicationContext()).getUsername();
+        if(!models.get(i).getName().equals(username))
+            myViewHolder.delete.setVisibility(View.INVISIBLE);
+        else{
+            myViewHolder.delete.setVisibility(View.VISIBLE);
+            myViewHolder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
         myViewHolder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +79,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView movieTitle, getReply, Name, score;
-        ImageView moviePoster, reply;
+        ImageView moviePoster, reply, delete;
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -77,6 +89,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyView
             Name = itemView.findViewById(R.id.feedName);
             score = itemView.findViewById(R.id.feedScore);
             reply = itemView.findViewById(R.id.replyButton);
+            delete = itemView.findViewById(R.id.ActivityDelete);
         }
     }
 
