@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
     }
     //Converts the login info to Json format and sends it to the server
     private void register() throws JSONException {
-        String url = "http://10.26.48.202:8080/login/add";
+        String url = "http://10.29.181.149:8080/login/add";
         final String email = registerEmail.getText().toString();
         final String password = registerPassword.getText().toString();
         final String fName = firstname.getText().toString();
