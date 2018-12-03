@@ -2,10 +2,13 @@ package com.example.demo.review;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.transaction.Transactional;
 
 @RestController
 public class ReviewController {
@@ -64,6 +67,15 @@ public class ReviewController {
 	public jsonResponse findMyReivews(@RequestBody Review username)
 	{
 		return new jsonResponse(reviewRepository.myReviews(username.getuser_who_posted()));
+	}
+
+
+	@RequestMapping(method = RequestMethod.POST, path = "/review/delete")
+	public postReviewJson deleteReviews(@RequestBody Review review){
+		if(reviewRepository.deleteReviewsAndReplies(review.getId())>0)
+			return new postReviewJson("success");
+		else
+			return new postReviewJson("failure");
 	}
 
 }

@@ -1,9 +1,11 @@
 package com.example.demo.review;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,4 +30,9 @@ public interface ReviewRepository extends JpaRepository <Review, Integer> {
     @Query(value = "select r.parentID, r.movie_title, r.movieID, r.id, r.score, r.user_who_posted, r.review, r.posterID from review r " +
             "where r.user_who_posted=?1 order by r.id desc", nativeQuery = true)
     public List<ReviewAndName> myReviews(String username);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from review where id=?1 or parentID=?1", nativeQuery = true)
+    public int deleteReviewsAndReplies(int id);
 }
