@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
@@ -33,7 +34,7 @@ public class Chat extends AppCompatActivity {
         t1=(TextView)findViewById(R.id.tx1);
 
         Draft[] drafts = {new Draft_6455()};
-        String w = "http://10.26.15.118:8080/websocket/"+((CurrentUserInfo)getApplication()).getUsername();
+        String w = "http://10.26.48.202:8080/websocket/"+((CurrentUserInfo)getApplication()).getUsername();
 
         try {
             Log.d("Socket:", "Trying socket");
@@ -78,12 +79,18 @@ public class Chat extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    cc.send( "@" + getIntent().getStringExtra("friendsUsername") + " " + e2.getText().toString() + "\n");
-                }
-                catch (Exception e)
-                {
-                    Log.d("ExceptionSendMessage:", e.getMessage().toString());
+                if (e2.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Empty message", Toast.LENGTH_LONG);
+                } else {
+                    try {
+                        String message = e2.getText().toString();
+                        e2.setText("");
+                        cc.send( "@" + getIntent().getStringExtra("friendsUsername") + " " + message + "\n");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.d("ExceptionSendMessage:", e.getMessage().toString());
+                    }
                 }
             }
         });

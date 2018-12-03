@@ -30,7 +30,7 @@ public class Friends extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<FriendsModel> friendsModels = new ArrayList<>();
-    String URL = "http://10.26.15.118:8080/myFriends";
+    String URL = "http://10.26.48.202:8080/myFriends";
     ImageView findFriends, latestMovies, home, profile, search;
     EditText searchFriends;
 
@@ -66,20 +66,19 @@ public class Friends extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 try {
                     JSONArray jsonArray = response.getJSONArray("result");
-                    for(int i=0; i<jsonArray.length(); i++){
-                        JSONObject result = jsonArray.getJSONObject(i);
-                        friendsModels.add(new FriendsModel(result.getString("username")));
+                    for(int i=0; i<jsonArray.length();i++){
+                        JSONObject current = jsonArray.getJSONObject(i);
+                        String username = current.getString("username");
+                        friendsModels.add(new FriendsModel(username));
                     }
-                    FriendsListAdapter friendsListAdapter = new FriendsListAdapter(getApplicationContext(), friendsModels);
+                    FriendsListAdapter friendsListAdapter = new FriendsListAdapter(getApplicationContext(),friendsModels);
                     recyclerView.setAdapter(friendsListAdapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -87,9 +86,9 @@ public class Friends extends AppCompatActivity {
 
             }
         });
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 

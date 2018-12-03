@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
-    final String url = "http://10.26.15.118:8080/users111";
+    final String url = "http://10.26.48.202:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn, findBtn;
