@@ -71,7 +71,7 @@ public class WebSocketServer {
 		usernameSessionMap.put(username, session);
 		
 		//tells the chat that the user with the specific username has joined the chatroom
-		String message = "User " + username + " has joined the chat"; 
+		String message = "User " + username + " has joined the chat \n";
 		broadcast(message);
 	}
 	
@@ -93,8 +93,8 @@ public class WebSocketServer {
 			String destUsername = message.split(" ")[0].substring(1);
 			int x = message.indexOf(" ");
 			message = message.substring(x, message.length());
-			sendMessageToAPractiuclarUser(destUsername, "[DM] " + username + ": " + message);
-			sendMessageToAPractiuclarUser(username, "[DM] " + username + ": " + message);
+			sendMessageToAPractiuclarUser(destUsername, username + ": " + message + "\n");
+			sendMessageToAPractiuclarUser(username, username + ": " + message + "\n");
 			recipient = destUsername;
 		}
 		else {
