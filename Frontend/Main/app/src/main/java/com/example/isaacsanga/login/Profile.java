@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
 
-    ImageView findFriends, latestMovies, home, profile;
+    ImageView findFriends, latestMovies, home, profile, logout;
     TextView postCount, likeCount;
     RecyclerView recyclerView;
     String URL = "http://10.29.181.149:8080/review/myReviews";
@@ -129,6 +129,16 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 
+            }
+        });
+
+        logout = findViewById(R.id.ProfileLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
