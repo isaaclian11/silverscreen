@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -30,7 +31,8 @@ public class Friends extends AppCompatActivity {
     RecyclerView recyclerView;
     List<FriendsModel> friendsModels = new ArrayList<>();
     String URL = "http://10.30.186.53:8080/myFriends";
-    ImageView findFriends, latestMovies, home, profile;
+    ImageView findFriends, latestMovies, home, profile, search;
+    EditText searchFriends;
 
 
     @Override
@@ -40,7 +42,17 @@ public class Friends extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.menubar);
         setSupportActionBar(toolbar);
+        search = findViewById(R.id.searchFriends);
+        searchFriends = findViewById(R.id.searchFriendsText);
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!searchFriends.getText().toString().isEmpty()){
+
+                }
+            }
+        });
         recyclerView = findViewById(R.id.friendsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         String username = ((CurrentUserInfo) this.getApplication()).getUsername();
