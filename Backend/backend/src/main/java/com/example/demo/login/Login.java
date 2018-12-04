@@ -44,7 +44,7 @@ public class Login {
 	private String lastname;
 	
 	/**
-	 * Method that retrieves the username.
+	 * Method that retrieves the username of an account.
 	 * @return
 	 */
 	public String getUsername() {

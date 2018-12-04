@@ -59,14 +59,14 @@ public class Review {
 	private String date;
 
 	/**
-	 * Value that is used to retrieve a film from The Movie Database API
+	 * Value that is used to retrieve a film from The Movie Database API.
 	 */
 	@Column (name = "movieID")
 	@NotFound(action = NotFoundAction.EXCEPTION)
 	private int movieID;
 
 	/**
-	 * Value that represents the id of the movie that this reply correlates to.
+	 * Method that returns an id that represents the movie that this reply will be posted on.
 	 * @return
 	 */
 	public int getParentID() {
@@ -74,8 +74,8 @@ public class Review {
 	}
 
 	/**
-	 * Value that sets the parentID from a reply. This is only use when user is replying to a reivew that
-	 * has been posted.
+	 * Method that sets the parentID for a reply to a review or other comment. This is only used when a user
+	 * is replying to a reivew thathas been posted or another comment on a review.
 	 * @param parentID
 	 */
 	public void setParentID(int parentID) {
@@ -83,7 +83,7 @@ public class Review {
 	}
 
 	/**
-	 * Value that represents the ID of the ID of the review that this reply is referring to. This is used
+	 * Value that represents the ID of the review that this reply refers to. This is used
 	 * to know where the reply will go on the client side.
 	 */
 	@Column (name = "parentID")
@@ -99,7 +99,8 @@ public class Review {
 	}
 
 	/**
-	 * Value that sets the value for the posterID. This is used to retrieve an image of the poster for the client.
+	 * Method that sets the value for the posterID to the String posterID. This is used to retrieve an image
+	 * of a movie poster from The Movie Database API so that it can be displayed on the client.
 	 * @param posterID
 	 */
 	public void setPosterID(String posterID) {
@@ -107,14 +108,15 @@ public class Review {
 	}
 
 	/**
-	 * Value that represents the 
+	 * Value that represents an ID that can be used by the Movie Database API in order to retrieve a poster of
+	 * that specific film to be displayed on the client. 
 	 */
 	@Column (name = "posterID")
 	@NotFound (action = NotFoundAction.EXCEPTION)
 	private String posterID;
 	
 	/**
-	 * Value that sets the id number for the review.
+	 * Method that sets the id number for the review.
 	 * @param id
 	 */
 	public void setId(int id) {
@@ -122,14 +124,14 @@ public class Review {
 	}
 	
 	/**
-	 * Retrieves the score of a specific film.
+	 * Method that retrieves the score that a user gave a specific film.
 	 * @return
 	 */
 	public int getScore() {
 		return score;
 	}
 	/**
-	 * Used to add/change a score that a user gave to a movie.
+	 * Method that is used to add/change a score that a user gave to a movie.
 	 * @param score
 	 */
 	public void setScore(int score) {
@@ -138,14 +140,15 @@ public class Review {
 
 
 	/**
-	 * Returns the id of a certain row/column in the database.
+	 * Method that returns the id of a certain row/column in the database. This value is also used to link a
+	 * reply to a film review.
 	 * @return
 	 */
 	public int getId(){
 		return id;
 	}
 	/**
-	 * Returns the review from a user in the database.
+	 * Method that returns the review from a user in the database.
 	 * @return
 	 */
 	public String getReview() {
@@ -153,7 +156,7 @@ public class Review {
 	}
 
 	/**
-	 * Adds the review from a user to a new row of reviews in the database.
+	 * Method that adds the review from a user to a new row in the reviews table in the database.
 	 * @param review
 	 */
 	public void setReview(String review) {
@@ -176,7 +179,7 @@ public class Review {
 	}
 
 	/**
-	 * returns the user who posted the review for a specific review in the database.
+	 * Method that returns the user who posted the review or reply.
 	 * @return
 	 */
 	public String getuser_who_posted() {
@@ -197,14 +200,16 @@ public class Review {
 		return movie_title;
 	}
 	/**
-	 * Method that adds the name of the movie to the database.
+	 * Method that sets the name of the movie to String movieTitle and puts it into the Review table in the 
+	 * database.
 	 * @param movieTitle
 	 */
 	public void setMovie_title(String movieTitle) {
 		 this.movie_title = movieTitle;
 	}
 	/**
-	 * Method that returns the Movie ID from the database. This can be used when replying to a review.
+	 * Method that returns the Movie ID from the database. This value is used in The Movie Database API to
+	 * pull information from this database.
 	 * @return
 	 */
 	public int getMovieID() {
@@ -212,7 +217,7 @@ public class Review {
 	}
 
 	/**
-	 * This method is used to set the movie ID when adding a new review to the database.
+	 * Method that sets the movie ID to int movieID and puts it in to the Review table in the database.
 	 * @param movieID
 	 */
 	public void setMovieID(int movieID) {

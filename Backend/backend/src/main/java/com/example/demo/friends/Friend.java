@@ -52,7 +52,7 @@ public class Friend
 		return friend1;
 	}
 	/**
-	 * Return the second friend from a specific column in the databse.
+	 * Return the second friend from a specific column in the database.
 	 * @return
 	 */
 	public String getFriend2() 
@@ -61,8 +61,8 @@ public class Friend
 	}
 
 	/**
-	 * Method that sets the user passed through as the first friend in the connection between two users as 
-	 * friends.
+	 * Method that sets the user passed through as the first friend in the connection between two users that
+	 * are friends. 
 	 * @param friend1
 	 */
 	public void setFriend1(String friend1) 

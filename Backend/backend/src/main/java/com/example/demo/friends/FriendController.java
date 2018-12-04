@@ -21,15 +21,14 @@ import com.example.demo.login.Login;
 public class FriendController 
 {
 	/**
-	 * The repository that the controller links to. This is used so that it can connect to the correct table
-	 * in the database.
+	 * Repository that this controller will link to.
 	 */
 	@Autowired
 	FriendRepository friendsRepository;
 	private final Logger logger = LoggerFactory.getLogger(FriendController.class);
 
 	/**
-	 * Method that will adds friends to the database.
+	 * Method that will adds friends to the friends table in the database.
 	 * @param friend
 	 * @return
 	 */
@@ -44,7 +43,7 @@ public class FriendController
 	}
 	
 	/**
-	 * Method that will get all friends on the database.
+	 * Method that will get all users that have become friends on the database.
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/allFriends")

@@ -11,8 +11,7 @@ import java.util.List;
 @Repository
 @EnableJpaRepositories
 /**
- * Method that links to the database, specifying the review table (since we want to add this
- * information to reviews) and the type of ID it uses.
+ * Method that links the controller to the Review table and its main ID the database.
  *
  */
 public interface ReviewRepository extends JpaRepository <Review, Integer> {

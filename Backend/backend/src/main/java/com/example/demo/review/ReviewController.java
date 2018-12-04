@@ -13,13 +13,13 @@ import javax.transaction.Transactional;
 @RestController
 public class ReviewController {
 	/**
-	 * Repository that this controller will link to
+	 * Repository that this controller will link to.
 	 */
 	@Autowired
 	ReviewRepository reviewRepository; 
 	
 	/**
-	 * Method that returns all of the review that are found. 
+	 * Method that returns all of the reviews that are found. 
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, path = "/review/reviews")
@@ -54,7 +54,7 @@ public class ReviewController {
 	}
 
 	/**
-	 * This method gets the replies that users have posted to reviews.
+	 * This method gets the replies that users have posted to their own or other users reviews.
 	 * @param id
 	 * @return
 	 */
@@ -63,6 +63,12 @@ public class ReviewController {
 		return new ReplyJson(reviewRepository.findReplies(id.getId()));
 	}
 
+	/**
+	 * This method finds any reviews that the specific user has wrote. This is used to place in the
+	 * users profile
+	 * @param username
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/review/myReviews")
 	public jsonResponse findMyReivews(@RequestBody Review username)
 	{
@@ -70,6 +76,12 @@ public class ReviewController {
 	}
 
 
+	/**
+	 * This method will delete a review or reply that a user has posted upon request of an administrator or
+	 * moderator.
+	 * @param review
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/review/delete")
 	public postReviewJson deleteReviews(@RequestBody Review review){
 		if(reviewRepository.deleteReviewsAndReplies(review.getId())>0)

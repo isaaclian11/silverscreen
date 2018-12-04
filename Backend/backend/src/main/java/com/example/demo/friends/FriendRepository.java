@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Method that is used to link to the Friend table in the database and its main ID type.
+ * Method that is used to link to the Friend table and its main ID type to the database.
  *
  */
 @Repository

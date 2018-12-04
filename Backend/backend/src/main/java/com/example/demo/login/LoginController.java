@@ -25,7 +25,7 @@ public class LoginController {
 	private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
-	 * This method is used to 
+	 * This method is used to add a user to the database. This method was mainly used as a debugging method.
 	 * @param login
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class LoginController {
 	
     @RequestMapping(method = RequestMethod.GET, path = "/users")
     /**
-     * This method is used for returning all of the users. This is a debugging method
+     * This method is used for returning all of the users. This is a debugging method.
      * @return
      */
     public List<Login> getAllUsers() 
@@ -138,8 +138,24 @@ public class LoginController {
         
         return friendResults;
     }
+    /**
+     * This method finds all of the friends that a specific user has.
+     * @param login
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, path = "/myFriends")
 	public myFriendsJSON myFrines(@RequestBody Login login){
     	return new myFriendsJSON(loginsRepository.findMyFriends(login.getUsername()));
 	}
+    /**
+     * This method will remove an account from the login table in the database.
+     * @param id
+     * @return
+     */
+  	@RequestMapping(method = RequestMethod.POST, path = "/delete")
+  	public jsonResponse deleteUser(@RequestBody Login id) {
+  		loginsRepository.delete(id);
+  		jsonResponse jsonResponse = new jsonResponse (id, "success");
+  		return jsonResponse;
+  	}
 }
