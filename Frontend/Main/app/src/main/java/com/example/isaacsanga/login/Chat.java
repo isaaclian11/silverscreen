@@ -3,6 +3,8 @@ package com.example.isaacsanga.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +19,15 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class Chat extends AppCompatActivity {
 
     Button  b2;
     EditText e1,e2;
-    TextView t1;
+    RecyclerView recyclerView;
+    ArrayList<ChatModel> arrayList = new ArrayList<>();
+    ChatAdapter chatAdapter;
 
     private WebSocketClient cc;
     @Override
@@ -31,8 +36,15 @@ public class Chat extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         b2=(Button)findViewById(R.id.bt2);
         e2=(EditText)findViewById(R.id.et2);
-        t1=(TextView)findViewById(R.id.tx1);
 
+        recyclerView = findViewById(R.id.tx1);
+
+        chatAdapter = new ChatAdapter(getApplicationContext(), arrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(chatAdapter);
+
+        recyclerView = findViewById(R.id.tx1);
         Draft[] drafts = {new Draft_6455()};
         String w = "http://10.29.181.149:8080/websocket/"+((CurrentUserInfo)getApplication()).getUsername();
 
@@ -40,14 +52,20 @@ public class Chat extends AppCompatActivity {
             Log.d("Socket:", "Trying socket");
             cc = new WebSocketClient(new URI(w),(Draft) drafts[0]) {
             @Override
-            public void onMessage(String message) {
-                    Log.d("", "run() returned: " + message);
-                    String s=t1.getText().toString();
-                    //t1.setText("hello world");
-                    //Log.d("first", "run() returned: " + s);
-                    //s=t1.getText().toString();
-                    //Log.d("second", "run() returned: " + s);
-                    t1.setText(s + " " +message);
+            public void onMessage(final String message) {
+
+                final String msg = message;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        arrayList.add(new ChatModel(msg, false));
+                        chatAdapter.notifyItemChanged(arrayList.size()-1);
+                        chatAdapter.notifyItemRangeChanged(arrayList.size()-1, arrayList.size());
+                        chatAdapter.notifyDataSetChanged();
+                    }
+                });
+
                 }
 
                 @Override

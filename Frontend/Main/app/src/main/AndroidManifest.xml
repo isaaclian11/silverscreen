@@ -33,7 +33,8 @@
         <activity android:name=".Friends"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Profile" />
-        <activity android:name=".Chat"></activity>
+        <activity android:name=".Chat"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
