@@ -27,7 +27,7 @@ import java.util.List;
 public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.MyViewHolder>{
     private Context mContext;
     private List<Model> models;
-    String URL = "http://10.29.181.149:8080/review/delete";
+    String URL = "http://10.26.50.117:8080/review/delete";
 
     public ListViewAdapter(Context mContext, List<Model> models) {
         this.mContext = mContext;

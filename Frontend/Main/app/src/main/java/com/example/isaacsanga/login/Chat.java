@@ -46,7 +46,7 @@ public class Chat extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.tx1);
         Draft[] drafts = {new Draft_6455()};
-        String w = "http://10.29.181.149:8080/websocket/"+((CurrentUserInfo)getApplication()).getUsername();
+        String w = "http://10.26.50.117:8080/websocket/"+((CurrentUserInfo)getApplication()).getUsername();
 
         try {
             Log.d("Socket:", "Trying socket");

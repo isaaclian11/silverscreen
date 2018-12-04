@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
-    final String url = "http://10.29.181.149:8080/users111";
+    final String url = "http://10.26.50.117:8080/users111";
 
     EditText getEmail, getPassword;
     Button login, registerBtn, findBtn;
@@ -100,6 +100,7 @@ public class Login extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+    //Opens up map
     private void openMap(){
         // Create a Uri from an intent string. Use the result to create an Intent.
         //Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");

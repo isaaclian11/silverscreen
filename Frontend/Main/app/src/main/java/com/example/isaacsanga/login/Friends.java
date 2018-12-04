@@ -30,7 +30,7 @@ public class Friends extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<FriendsModel> friendsModels = new ArrayList<>();
-    String URL = "http://10.29.181.149:8080/myFriends";
+    String URL = "http://10.26.50.117:8080/myFriends";
     ImageView findFriends, latestMovies, home, profile, search;
     EditText searchFriends;
 

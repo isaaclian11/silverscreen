@@ -29,7 +29,7 @@ public class Profile extends AppCompatActivity {
     ImageView findFriends, latestMovies, home, profile, logout;
     TextView postCount, likeCount;
     RecyclerView recyclerView;
-    String URL = "http://10.29.181.149:8080/review/myReviews";
+    String URL = "http://10.26.50.117:8080/review/myReviews";
     ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String>names = new ArrayList<>();
     ArrayList<String> descriptions = new ArrayList<>();
